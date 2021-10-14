@@ -8,5 +8,4 @@ def hello():
 def index():
     return render_template('local_tripsitters.html')
 if __name__ == "__main__":
-    #app.run(host="ec2-54-215-40-76.us-west-1.compute.amazonaws.com", port=80)
  	app.run(host="0.0.0.0", port=80)
