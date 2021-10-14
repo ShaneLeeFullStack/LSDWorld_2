@@ -1,11 +1,10 @@
-from flask import Flask, url_for,request
+from flask import Flask, url_for,request, render_template
 
 app = Flask(__name__)
 @app.route('/')
 def hello():
     return "Hello World 1"
-@app.route('/index')
-
+@app.route('/index', methods=['GET','POST'])
 def index():
     return "Hey This is an index page"
 if __name__ == "__main__":
