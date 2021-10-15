@@ -4,7 +4,7 @@ app = Flask(__name__)
 @app.route('/')
 def hello():
     return "LSD WORLD is the networking app for psychonauts"
-@app.route('/index', methods=['GET','POST'])
+@app.route('/local_tripsitters', methods=['GET','POST'])
 def index():
     return render_template('local_tripsitters.html')
 if __name__ == "__main__":
