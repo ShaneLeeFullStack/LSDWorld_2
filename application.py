@@ -1,14 +1,8 @@
 from flask import Flask, url_for,request, render_template
 app = Flask(__name__)
 @app.route('/')
-def hello():
-    return "LSD WORLD is the networking app for psychonauts" \
-           "Also, Julian Hodge is so damn sexy"
-@app.route('/index', methods=['GET','POST'])
-def index():
+def home_page():
     return render_template('layout_auth.html')
-    #return render_template('local_tripsitters.html')
-
 @app.route('/local_tripsitters')
 def local_tripsitters():
     return render_template('local_tripsitters.html')
