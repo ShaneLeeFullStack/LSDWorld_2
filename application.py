@@ -15,9 +15,9 @@ def submit_trip_report():
 @app.route('/journey_safe_page')
 def journey_safe():
     return render_template('journey_safe_form.html')
-#@app.route('/map_page')
-#def map_page():
-#    return render_template('map_form.html')
+@app.route('/map_page')
+def map_page():
+    return render_template('map_form.html')
 @app.route('/create_profile_page')
 def create_profile_page():
     return render_template('create_profile_form.html')
