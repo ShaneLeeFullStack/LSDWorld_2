@@ -12,18 +12,18 @@ def submit_trip_report():
 #@app.route('/home_page')
 #def home_page():
 #    return render_template('index.html')
-#@app.route('/journey_safe_page')
-#def journey_safe():
-#    return render_template('journey_safe_form.html.html')
+@app.route('/journey_safe_page')
+def journey_safe():
+    return render_template('journey_safe_form.html.html')
 #@app.route('/map_page')
 #def map_page():
 #    return render_template('map_form.html')
-#@app.route('/create_profile_page')
-#def create_profile_page():
-#    return render_template('create_profile_form.html')
-#@app.route('/need_help')
-#def need_help():
-#    return render_template('need_help.html')
+@app.route('/create_profile_page')
+def create_profile_page():
+    return render_template('create_profile_form.html')
+@app.route('/need_help')
+def need_help():
+    return render_template('need_help.html')
 #@app.route('/auth/logout')
 #def auth_logout():
 #    return render_template('auth.html')
