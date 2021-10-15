@@ -9,9 +9,9 @@ def local_tripsitters():
 @app.route('/submit_trip_report_page')
 def submit_trip_report():
     return render_template('submit_trip_report_form.html')
-#@app.route('/home_page')
-#def home_page():
-#    return render_template('index.html')
+@app.route('/home_page')
+def home_page():
+    return render_template('index.html')
 @app.route('/journey_safe_page')
 def journey_safe():
     return render_template('journey_safe_form.html')
