@@ -6,9 +6,9 @@ def home_page():
 @app.route('/local_tripsitters')
 def local_tripsitters():
     return render_template('local_tripsitters.html')
-#@app.route('/submit_trip_report_page')
-#def submit_trip_report():
-#    return render_template('submit_trip_report_form.html')
+@app.route('/submit_trip_report_page')
+def submit_trip_report():
+    return render_template('submit_trip_report_form.html')
 #@app.route('/home_page')
 #def home_page():
 #    return render_template('index.html')
