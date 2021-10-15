@@ -5,6 +5,9 @@ def hello():
     return "LSD WORLD is the networking app for psychonauts"
 @app.route('/index', methods=['GET','POST'])
 def index():
-    return render_template('local_tripsitters.html')
+    return "local tripsitters"
+    #return render_template('local_tripsitters.html')
 if __name__ == "__main__":
  	app.run(host="0.0.0.0", port=80)
+
+#{% extends "templates/layout_auth.html" %}
