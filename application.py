@@ -75,10 +75,14 @@ def submit_trip_report_page():
     return render_template('submit_trip_report_form.html')
 
 
-@app.route('/submit_trip_report', methods=['POST'])
+@app.route('/submit_trip_report', methods=['GET', 'POST'])
 def submit_trip_report():
-    substance_array = substance_table.select()
+    #substance_array = substance_table.select()
+    #substance_name = request.params.get('substance_name')
+    substance_name = request.form['substance_name']
+    print(substance_name)
     redirect('submit_trip_report_page')
+    return "does function work"
 
 
 # @app.route('/home_page', methods =['GET', 'POST'])
@@ -108,7 +112,8 @@ def need_help():
 # def auth_logout():
 #    return render_template('auth.html')
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=80)
+    app.run(host="0.0.0.0", port=80, debug=True)
+
 
 # {% extends "templates/layout_auth.html" %}
 # {{ super()}}
