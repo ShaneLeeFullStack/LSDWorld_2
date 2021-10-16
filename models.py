@@ -1,5 +1,3 @@
-#ssh -i "awesome_galavant.pem" ubuntu@ec2-18-188-117-20.us-east-2.compute.amazonaws.com
-#ssh -i awesome_galavant.pem ec2-user@ec2-3-16-166-79.us-east-2.compute.amazonaws.com -v
 import datetime
 
 from common import db, Field, auth
