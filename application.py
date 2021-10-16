@@ -58,8 +58,6 @@ class text_analysis(db.Model):
     tags = db.Column(db.String)
 
 
-
-
 @app.route('/', methods=['GET', 'POST'])
 def home_page():
     return render_template('layout_auth.html')
@@ -79,10 +77,12 @@ def submit_trip_report_page():
 def submit_trip_report():
     #substance_array = substance_table.select()
     #substance_name = request.params.get('substance_name')
-    substance_name = request.form['substance_name']
-    print(substance_name)
-    redirect('submit_trip_report_page')
-    return "does function work"
+    new_substance_name = request.form['substance_name']
+    print(new_substance_name)
+    substance_row = db.select(substance_table.substance_name == new_substance_name)
+    print(substance_row)
+    return redirect('submit_trip_report_page')
+    #return render_template('submit_trip_report_form.html')
 
 
 # @app.route('/home_page', methods =['GET', 'POST'])
