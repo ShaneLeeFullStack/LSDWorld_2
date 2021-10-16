@@ -1,5 +1,5 @@
 from flask import Flask, url_for,request, render_template, redirect
-from common import db, auth
+
 app = Flask(__name__)
 @app.route('/', methods =['GET', 'POST'])
 def home_page():
@@ -12,8 +12,7 @@ def submit_trip_report_page():
     return render_template('submit_trip_report_form.html')
 @app.route('/submit_trip_report', methods=['POST'])
 def submit_trip_report():
-    substance_array = db(db.substance_table).select()
-
+        redirect('submit_trip_report_page')
 #@app.route('/home_page', methods =['GET', 'POST'])
 #def home_page():
 #    return render_template('index.html')
