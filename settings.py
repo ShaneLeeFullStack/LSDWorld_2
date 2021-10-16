@@ -9,8 +9,8 @@ import os
 
 # try import private settings
 #try: from . settings_private import *
-try: from py4web.apps.FirstGoogleAppEngineApp.private import *
-except: pass
+#try: from py4web.apps.FirstGoogleAppEngineApp.private import *
+#except: pass
 
 # db settings
 APP_FOLDER = os.path.dirname(__file__)
