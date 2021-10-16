@@ -1,22 +1,27 @@
-#ssh -i "awesome_galavant.pem" ubuntu@ec2-18-188-117-20.us-east-2.compute.amazonaws.com
-#ssh -i awesome_galavant.pem ec2-user@ec2-3-16-166-79.us-east-2.compute.amazonaws.com -v
+# ssh -i "awesome_galavant.pem" ubuntu@ec2-18-188-117-20.us-east-2.compute.amazonaws.com
+# ssh -i awesome_galavant.pem ec2-user@ec2-3-16-166-79.us-east-2.compute.amazonaws.com -v
 import datetime
 
-from .common import db, Field, auth
+from common import db, Field, auth
 from pydal.validators import *
+
 
 def get_user_email():
     return auth.current_user.get('email')
 
+
 def get_first_name():
     return auth.current_user.get('first_name')
+
 
 def get_time():
     return datetime.datetime.utcnow()
 
+
 def get_user_id():
     user_id = db(db.user_profile.email == auth.current_user.get('email')).select()
     return user_id[0].id
+
 
 # User Profile Table
 db.define_table('user_profile',
