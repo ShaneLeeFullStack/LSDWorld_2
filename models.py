@@ -7,7 +7,6 @@ from pydal.validators import *
 
 def get_user_email():
     return auth.current_user.get('email')
-
 def get_first_name():
     return auth.current_user.get('first_name')
 

@@ -8,7 +8,7 @@ from py4web.utils.auth import Auth
 from py4web.utils.tags import Tags
 from py4web.utils.factories import ActionFactory
 from py4web.utils.url_signer import URLSigner
-from . import settings
+import settings
 
 db = DAL(settings.DB_URI,
          folder=settings.DB_FOLDER,
