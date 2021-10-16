@@ -16,7 +16,7 @@ db = DAL(settings.DB_URI,
 
 # define global objects that may or may not be used by th actions
 cache = Cache(size=1000)
-T = Translator(settings.T_FOLDER)
+#T = Translator(settings.T_FOLDER)
 
 # pick the session type that suits you best
 if settings.SESSION_TYPE == 'cookies':
@@ -65,7 +65,7 @@ if settings.OAUTH2FACEBOOK_CLIENT_ID:
 
 auth.enable()
 
-unauthenticated = ActionFactory(db, session, T, auth)
-authenticated = ActionFactory(db, session, T, auth.user)
+#unauthenticated = ActionFactory(db, session, T, auth)
+#authenticated = ActionFactory(db, session, T, auth.user)
 
 signed_url = URLSigner(session)
