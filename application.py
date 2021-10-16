@@ -1,12 +1,34 @@
 # py4web~=1.20210602.1
 # pydal~=20210215.1
 from textFunc import rivers_func
-
+import datetime
 from flask import Flask, url_for, request, render_template, redirect
+import sqlite3 as sql
+from flask_sqlalchemy import SQLAlchemy
 
+# define connection and cursor
+#connection = sql.connect('LSDWorld_DATABASE.sqlite')
+#cursor = connection.cursor()
+
+#command1 = """CREATE TABLE IF NOT EXISTS
+#user_profile
+#(NAME TEXT,
+#GENDER_IDENTITY,
+#PHONE_NUMBER TEXT,
+#EMAIL,
+#CITY TEXT,
+#TRIPSITTER BOOLEAN,
+# SAFETY_CONTACT_NAME TEXT,
+# SAFETY_CONTACT_PHONE_NUMBER TEXT)"""
+
+def get_time():
+    return datetime.datetime.utcnow()
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///lsdworld_database.db'
+db = SQLAlchemy(app)
 
+#class user_profile(db.Model):
 
 @app.route('/', methods=['GET', 'POST'])
 def home_page():
