@@ -1,8 +1,5 @@
 from flask import Flask, url_for,request, render_template, redirect
 from common import db, auth
-def get_user_id():
-    user_id = db(db.user_profile.email == auth.current_user.get('email')).select()
-    return user_id[0].id
 app = Flask(__name__)
 @app.route('/', methods =['GET', 'POST'])
 def home_page():
