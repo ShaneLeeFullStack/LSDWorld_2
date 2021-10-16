@@ -1,3 +1,5 @@
+#py4web~=1.20210602.1
+#pydal~=20210215.1
 from flask import Flask, url_for,request, render_template, redirect
 
 app = Flask(__name__)
