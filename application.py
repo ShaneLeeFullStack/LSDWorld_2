@@ -41,20 +41,20 @@ class substance_table(db.Model):
 class trip_reports(db.Model):
     trip_report_id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Text, default=get_time())
-    user_id = db.Column(db.Integer, ForeignKey(user_profile.user_id),
+    user_id = db.Column(db.Integer, db.ForeignKey('user_profile.user_id'),
                         nullable=False)
     title = db.Column(db.Text)
-    substance_id = db.Column(db.Integer, ForeignKey(substance_table.substance_id),
+    substance_id = db.Column(db.Integer, db.ForeignKey('substance_table.substance_id'),
                              nullable=False)
     report_content = db.Column(db.Text)
     diff_headspace = db.Column(db.Boolean)
     anti_depressants = db.Column(db.Boolean)
     at_festival = db.Column(db.Boolean)
-    is_showing = db.Column(db.Integer, ForeignKey(trip_report_id))
+    is_showing = db.Column(db.Integer, db.ForeignKey('trip_reports.trip_report_id'))
 
 class text_analysis(db.Model):
     id = db.Column(db.Integer, ForeignKey(trip_reports.trip_report_id), primary_key=True)
-    user_profile_id = db.Column(db.Integer, ForeignKey(user_profile.user_id))
+    user_profile_id = db.Column(db.Integer, db.ForeignKey('user_profile.user_id'))
     tags = db.Column(db.String)
 
 
