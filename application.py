@@ -7,19 +7,27 @@ import datetime
 from flask import Flask, url_for, request, render_template, redirect
 import sqlite3 as sql
 from flask_sqlalchemy import SQLAlchemy
+import sqlalchemy
+
 
 # define connection and cursor
-#connection = sql.connect('LSDWorld_DATABASE.sqlite')
-#cursor = connection.cursor()
+# connection = sql.connect('LSDWorld_DATABASE.sqlite')
+# cursor = connection.cursor()
 
-#cursor.execute(command1)
+# cursor.execute(command1)
 
 def get_time():
     return datetime.datetime.utcnow()
 
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///lsdworld_database.db'
 db = SQLAlchemy(app)
+
+
+# engine = SQLAlchemy.create_engine(self=,sa_url='sqlite:///lsdworld_database.db', engine_opts={})
+# engine = db.create_engine('sqlite:///lsdworld_database.db')
+# connection = engine.connect()
 
 
 class user_profile(db.Model):
@@ -27,16 +35,18 @@ class user_profile(db.Model):
     name = db.Column(db.Text)
     gender_identity = db.Column(db.String)
     phone_number = db.Column(db.String, unique=True, nullable=False)
-    email = db.Column(db.String,unique=True)
+    email = db.Column(db.String, unique=True)
     city = db.Column(db.Text)
     tripsitter = db.Column(db.Boolean)
     safety_contact_name = db.Column(db.Text)
     safety_contact_phone_number = db.Column(db.Text)
 
+
 class substance_table(db.Model):
     substance_id = db.Column(db.Integer, primary_key=True, nullable=False)
     substance_name = db.Column(db.Text, unique=True, nullable=False)
     category = db.Column(db.String)
+
 
 class trip_reports(db.Model):
     trip_report_id = db.Column(db.Integer, primary_key=True)
@@ -51,6 +61,7 @@ class trip_reports(db.Model):
     anti_depressants = db.Column(db.Boolean)
     at_festival = db.Column(db.Boolean)
     is_showing = db.Column(db.Integer, db.ForeignKey('trip_reports.trip_report_id'))
+
 
 class text_analysis(db.Model):
     id = db.Column(db.Integer, ForeignKey(trip_reports.trip_report_id), primary_key=True)
@@ -75,15 +86,26 @@ def submit_trip_report_page():
 
 @app.route('/submit_trip_report', methods=['GET', 'POST'])
 def submit_trip_report():
-    #substance_array = substance_table.select()
-    #substance_name = request.params.get('substance_name')
+
     new_substance_name = request.form['substance_name']
     print(new_substance_name)
-    substance_row = db.select(substance_table.substance_name == new_substance_name)
-    print(substance_row)
+    substance_id = substance_table.query.filter_by(
+        substance_name=request.form['substance_name']
+             ).first().substance_id
+    #print(substance_row)
+    title = request.form['title']
+    report_content = request.form['report_content']
+    print(report_content)
+    new_trip_report = trip_reports(
+        trip_report_id=4,
+        user_id=4,
+        title=request.form['title'],
+        substance_id=substance_id,
+        report_content=request.form['report_content']
+        )
+    db.session.add(new_trip_report)
+    db.session.commit()
     return redirect('submit_trip_report_page')
-    #return render_template('submit_trip_report_form.html')
-
 
 # @app.route('/home_page', methods =['GET', 'POST'])
 # def home_page():
@@ -100,8 +122,26 @@ def map_page():
 
 @app.route('/create_profile_page', methods=['GET', 'POST'])
 def create_profile_page():
+
     return render_template('create_profile_form.html')
 
+
+@app.route('/create_profile', methods=['GET','POST'])
+def create_profile():
+    new_profile = user_profile(name=request.form['name'],
+    gender_identity = request.form['gender_identity'],
+    phone_number = request.form['phone_number'],
+    city = request.form['city'],
+    tripsitter = True,
+    safety_contact_name = request.form['safety_contact_name'],
+    safety_contact_phone_number = request.
+                               form['safety_contact_phone_number']
+                               )
+    db.session.add(new_profile)
+    db.session.commit()
+
+
+    return redirect('create_profile_page')
 
 @app.route('/need_help', methods=['GET', 'POST'])
 def need_help():
@@ -113,7 +153,6 @@ def need_help():
 #    return render_template('auth.html')
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80, debug=True)
-
 
 # {% extends "templates/layout_auth.html" %}
 # {{ super()}}
