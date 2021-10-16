@@ -1,9 +1,12 @@
 from flask import Flask, url_for,request, render_template, redirect
 import py4web
+from py4web.utils.form import Form, FormStyleBulma
 from common import db, session, T, cache, auth, signed_url
 from textFunc import rivers_func
 from weatherScrapper import weatherInfo
 from py4web.utils.url_signer import URLSigner
+
+
 
 url_signer = URLSigner(session)
 
