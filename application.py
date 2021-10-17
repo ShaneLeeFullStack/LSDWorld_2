@@ -6,14 +6,7 @@ import pyodbc
 import urllib.parse
 import os
 # Configure Database URI:
-#params = urllib.parse.quote_plus("DRIVER={ODBC Driver 13 for SQL Server};"
-#                                 "SERVER=tcp:lsdworld-server.database.windows.net,1433; "
-#                                 "DATABASE = lsdworld_database;"
-#                                 "UID = {azureuser}; "
-#                                 "PWD=gHostbat9&"
-#                                 "Trusted_Connection=no;"
-#                                 )
-params = urllib.parse.quote_plus("Driver={ODBC Driver 13 for SQL Server};"
+params = urllib.parse.quote_plus("Driver={ODBC Driver 17 for SQL Server};"
                                  "Server=tcp:lsdworld-server.database.windows.net,1433;"
                                  "Database=lsdworld_database;Uid=azureuser;"
                                  "Pwd={gHostbat9&};"
