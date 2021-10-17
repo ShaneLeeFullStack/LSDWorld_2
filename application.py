@@ -1,33 +1,20 @@
-# py4web~=1.20210602.1
-# pydal~=20210215.1
 from sqlalchemy import ForeignKey
-
-from textFunc import rivers_func
 import datetime
 from flask import Flask, url_for, request, render_template, redirect
 import sqlite3 as sql
 from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy
+import pyodbc
 
-
-# define connection and cursor
-# connection = sql.connect('LSDWorld_DATABASE.sqlite')
-# cursor = connection.cursor()
-
-# cursor.execute(command1)
 
 def get_time():
     return datetime.datetime.utcnow()
 
 
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///lsdworld_database.db'
 db = SQLAlchemy(app)
-
-
-# engine = SQLAlchemy.create_engine(self=,sa_url='sqlite:///lsdworld_database.db', engine_opts={})
-# engine = db.create_engine('sqlite:///lsdworld_database.db')
-# connection = engine.connect()
 
 
 class user_profile(db.Model):
