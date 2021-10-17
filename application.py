@@ -5,12 +5,11 @@ import sqlite3 as sql
 from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy
 
-from testsqlite import cursor
+#from testsqlite import cursor
 
 
 def get_time():
     return datetime.datetime.utcnow()
-
 
 
 app = Flask(__name__)
@@ -76,13 +75,13 @@ def submit_trip_report_page():
 def submit_trip_report():
     #new_substance_name = request.form['substance_name']
     #print(new_substance_name)
-    cursor.execute("INSERT INTO TRIP_REPORTS ("
-                   "trip_report_id,"
-                   "user_id,"
-                   "title,"
-                   "substance_id,"
-                   "report_content)"
-                   "VALUES(7,7, 'doeds it work 7', 0, 'sample report content' )")
+   # cursor.execute("INSERT INTO TRIP_REPORTS ("
+   #                "trip_report_id,"
+   #                "user_id,"
+   #                "title,"
+   #                "substance_id,"
+   #                "report_content)"
+   #                "VALUES(7,7, 'doeds it work 7', 0, 'sample report content' )")
 
     #substance_id = substance_table.query.filter_by(
     #    substance_name=request.form['substance_name']
