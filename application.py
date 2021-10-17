@@ -1,9 +1,8 @@
 from sqlalchemy import ForeignKey
 import datetime
 from flask import Flask, url_for, request, render_template, redirect
-import sqlite3 as sql
 from flask_sqlalchemy import SQLAlchemy
-import sqlalchemy
+
 
 
 def get_time():
