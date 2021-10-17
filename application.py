@@ -6,11 +6,21 @@ import pyodbc
 import urllib.parse
 import os
 # Configure Database URI:
-params = urllib.parse.quote_plus("DRIVER={ODBC Driver 17 for SQL Server};"
-                                 "SERVER=lsdworld-server.database.windows.net; "
-                                 "DATABASE = lsdworld_database;"
-                                 "UID = azureuser; "
-                                 "PWD=gHostbat9&")
+#params = urllib.parse.quote_plus("DRIVER={ODBC Driver 13 for SQL Server};"
+#                                 "SERVER=tcp:lsdworld-server.database.windows.net,1433; "
+#                                 "DATABASE = lsdworld_database;"
+#                                 "UID = {azureuser}; "
+#                                 "PWD=gHostbat9&"
+#                                 "Trusted_Connection=no;"
+#                                 )
+params = urllib.parse.quote_plus("Driver={ODBC Driver 13 for SQL Server};"
+                                 "Server=tcp:lsdworld-server.database.windows.net,1433;"
+                                 "Database=lsdworld_database;Uid=azureuser;"
+                                 "Pwd={gHostbat9&};"
+                                 "Encrypt=yes;"
+                                 "TrustServerCertificate=no;"
+                                 "Connection Timeout=30;")
+
 
 # Initialization
 app = Flask(__name__)
@@ -95,8 +105,8 @@ def submit_trip_report():
         substance_name=request.form['substance_name']
              ).first().substance_id
     #title = request.form['title']
-    report_content = request.form['report_content']
-    print(report_content)
+    #report_content = request.form['report_content']
+    #print(report_content)
     #new_trip_report = trip_reports(
     #    trip_report_id=5,
     #    user_id=5,

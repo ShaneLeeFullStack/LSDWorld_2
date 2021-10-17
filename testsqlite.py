@@ -62,4 +62,4 @@ with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE=
                    "title,"
                    "substance_id,"
                    "report_content)"
-                   "VALUES(8,8, 'my first trip report', 0, 'sample report content' )")
+                   "VALUES(9,9, 'my first trip report', 0, 'sample report content' )")
