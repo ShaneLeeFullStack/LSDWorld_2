@@ -3,14 +3,21 @@ import datetime
 from flask import Flask, url_for, request, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
 import pyodbc
+import urllib.parse
+import os
+
+# Configure Database URI:
+params = urllib.parse.quote_plus("DRIVER={SQL Server};SERVER=lsdworld-server.database.windows.net; DATABASE = lsdworld_database;UID = azureuser; PWD=gHostbat9&")
 
 
-def get_time():
-    return datetime.datetime.utcnow()
 
 
+# Initialization
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///lsdworld_database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc:///?odbc_connect=%s" % params
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///lsdworld_database.db'
+app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+#extensions
 db = SQLAlchemy(app)
 
 
@@ -31,6 +38,8 @@ class substance_table(db.Model):
     substance_name = db.Column(db.Text, unique=True, nullable=False)
     category = db.Column(db.String)
 
+def get_time():
+    return datetime.datetime.utcnow()
 
 class trip_reports(db.Model):
     trip_report_id = db.Column(db.Integer, primary_key=True)
@@ -51,6 +60,8 @@ class text_analysis(db.Model):
     id = db.Column(db.Integer, ForeignKey(trip_reports.trip_report_id), primary_key=True)
     user_profile_id = db.Column(db.Integer, db.ForeignKey('user_profile.user_id'))
     tags = db.Column(db.String)
+
+
 
 
 @app.route('/', methods=['GET', 'POST'])
