@@ -4,6 +4,8 @@ from flask import Flask, url_for, request, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
 import pyodbc
 
+from testsqlite import cursor
+
 
 def get_time():
     return datetime.datetime.utcnow()
@@ -72,7 +74,7 @@ def submit_trip_report_page():
 def submit_trip_report():
     #new_substance_name = request.form['substance_name']
     #print(new_substance_name)
-   # cursor.execute("INSERT INTO TRIP_REPORTS ("
+    #cursor.execute("INSERT INTO TRIP_REPORTS ("
    #                "trip_report_id,"
    #                "user_id,"
    #                "title,"
