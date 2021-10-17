@@ -4,8 +4,8 @@ from flask import Flask, url_for, request, render_template, redirect
 import sqlite3 as sql
 from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy
-
-#from testsqlite import cursor
+import pyodbc
+from testsqlite import cursor
 
 
 def get_time():
@@ -17,43 +17,43 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///lsdworld_database.db'
 db = SQLAlchemy(app)
 
 
-class user_profile(db.Model):
-    user_id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Text)
-    gender_identity = db.Column(db.String)
-    phone_number = db.Column(db.String, unique=True, nullable=False)
-    email = db.Column(db.String, unique=True)
-    city = db.Column(db.Text)
-    tripsitter = db.Column(db.Boolean)
-    safety_contact_name = db.Column(db.Text)
-    safety_contact_phone_number = db.Column(db.Text)
+#class user_profile(db.Model):
+#    user_id = db.Column(db.Integer, primary_key=True)
+#    name = db.Column(db.Text)
+#    gender_identity = db.Column(db.String)
+#    phone_number = db.Column(db.String, unique=True, nullable=False)
+#    email = db.Column(db.String, unique=True)
+#    city = db.Column(db.Text)
+#    tripsitter = db.Column(db.Boolean)
+#    safety_contact_name = db.Column(db.Text)
+#    safety_contact_phone_number = db.Column(db.Text)
 
 
-class substance_table(db.Model):
-    substance_id = db.Column(db.Integer, primary_key=True, nullable=False)
-    substance_name = db.Column(db.Text, unique=True, nullable=False)
-    category = db.Column(db.String)
+#class substance_table(db.Model):
+#    substance_id = db.Column(db.Integer, primary_key=True, nullable=False)
+#    substance_name = db.Column(db.Text, unique=True, nullable=False)
+#    category = db.Column(db.String)
 
 
-class trip_reports(db.Model):
-    trip_report_id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.Text, default=get_time())
-    user_id = db.Column(db.Integer, db.ForeignKey('user_profile.user_id'),
-                        nullable=False)
-    title = db.Column(db.Text)
-    substance_id = db.Column(db.Integer, db.ForeignKey('substance_table.substance_id'),
-                             nullable=False)
-    report_content = db.Column(db.Text)
-    diff_headspace = db.Column(db.Boolean)
-    anti_depressants = db.Column(db.Boolean)
-    at_festival = db.Column(db.Boolean)
-    is_showing = db.Column(db.Integer, db.ForeignKey('trip_reports.trip_report_id'))
+#class trip_reports(db.Model):
+#    trip_report_id = db.Column(db.Integer, primary_key=True)
+#    date = db.Column(db.Text, default=get_time())
+#    user_id = db.Column(db.Integer, db.ForeignKey('user_profile.user_id'),
+#                        nullable=False)
+#    title = db.Column(db.Text)
+#    substance_id = db.Column(db.Integer, db.ForeignKey('substance_table.substance_id'),
+#                             nullable=False)
+#    report_content = db.Column(db.Text)
+#    diff_headspace = db.Column(db.Boolean)
+#    anti_depressants = db.Column(db.Boolean)
+#    at_festival = db.Column(db.Boolean)
+#    is_showing = db.Column(db.Integer, db.ForeignKey('trip_reports.trip_report_id'))
 
 
-class text_analysis(db.Model):
-    id = db.Column(db.Integer, ForeignKey(trip_reports.trip_report_id), primary_key=True)
-    user_profile_id = db.Column(db.Integer, db.ForeignKey('user_profile.user_id'))
-    tags = db.Column(db.String)
+#class text_analysis(db.Model):
+#    id = db.Column(db.Integer, ForeignKey(trip_reports.trip_report_id), primary_key=True)
+#    user_profile_id = db.Column(db.Integer, db.ForeignKey('user_profile.user_id'))
+#    tags = db.Column(db.String)
 
 
 @app.route('/', methods=['GET', 'POST'])
