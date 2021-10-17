@@ -17,6 +17,8 @@ with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE=
         while row:
             print (str(row[0]) + " " + str(row[1]))
             row = cursor.fetchone()
+
+
         cursor.execute("DROP TABLE TEXT_ANALYSIS")
         cursor.execute("DROP TABLE SUBSTANCE_TABLE")
         cursor.execute("DROP TABLE TRIP_REPORTS")
