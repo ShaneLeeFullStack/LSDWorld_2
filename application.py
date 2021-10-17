@@ -4,8 +4,6 @@ from flask import Flask, url_for, request, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
 import pyodbc
 
-from testsqlite import cursor
-
 
 def get_time():
     return datetime.datetime.utcnow()
