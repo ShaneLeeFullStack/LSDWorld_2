@@ -4,8 +4,7 @@ from flask import Flask, url_for, request, render_template, redirect
 import sqlite3 as sql
 from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy
-import pyodbc
-from testsqlite import cursor
+
 
 
 def get_time():
