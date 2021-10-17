@@ -6,6 +6,22 @@ from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy
 import pyodbc
 
+server = 'lsdworld-server.database.windows.net'
+database = 'lsdworld_database'
+username = 'azureuser'
+password = '{gHostbat9&}'
+driver = '{ODBC Driver 17 for SQL Server}'
+
+with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password) as conn:
+    with conn.cursor() as cursor:
+        cursor.execute("SELECT TOP 3 name, collation_name FROM sys.databases")
+        cursor.execute("SELECT * FROM SalesLT.Address")
+
+        row = cursor.fetchone()
+        while row:
+            print (str(row[0]) + " " + str(row[1]))
+            row = cursor.fetchone()
+
 
 def get_time():
     return datetime.datetime.utcnow()
@@ -73,25 +89,24 @@ def submit_trip_report_page():
 
 @app.route('/submit_trip_report', methods=['GET', 'POST'])
 def submit_trip_report():
-
-    new_substance_name = request.form['substance_name']
-    print(new_substance_name)
-    substance_id = substance_table.query.filter_by(
-        substance_name=request.form['substance_name']
-             ).first().substance_id
+    #new_substance_name = request.form['substance_name']
+    #print(new_substance_name)
+    #substance_id = substance_table.query.filter_by(
+    #    substance_name=request.form['substance_name']
+    #         ).first().substance_id
     #print(substance_row)
-    title = request.form['title']
-    report_content = request.form['report_content']
-    print(report_content)
-    new_trip_report = trip_reports(
-        trip_report_id=4,
-        user_id=4,
-        title=request.form['title'],
-        substance_id=substance_id,
-        report_content=request.form['report_content']
-        )
-    db.session.add(new_trip_report)
-    db.session.commit()
+    #title = request.form['title']
+    #report_content = request.form['report_content']
+    #print(report_content)
+    #new_trip_report = trip_reports(
+    #    trip_report_id=4,
+    #    user_id=4,
+    #    title=request.form['title'],
+    #    substance_id=substance_id,
+    #    report_content=request.form['report_content']
+    #    )
+    #db.session.add(new_trip_report)
+    #db.session.commit()
     return redirect('submit_trip_report_page')
 
 # @app.route('/home_page', methods =['GET', 'POST'])
