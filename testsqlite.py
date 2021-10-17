@@ -17,7 +17,9 @@ with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE=
         while row:
             print (str(row[0]) + " " + str(row[1]))
             row = cursor.fetchone()
-
+        cursor.execute("DROP TABLE TEXT_ANALYSIS")
+        cursor.execute("DROP TABLE SUBSTANCE_TABLE")
+        cursor.execute("DROP TABLE TRIP_REPORTS")
         cursor.execute("DROP TABLE USER_PROFILE")
         cursor.execute("CREATE TABLE USER_PROFILE ("
                        "user_id INTEGER PRIMARY KEY,"
@@ -36,9 +38,9 @@ with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE=
                        "title varchar(255),"
                        "substance_id int NOT NULL,"
                        "report_content varchar(255),"
-                       "is_showing int,"
+                       "is_showing INTEGER)")
                        #"FOREIGN KEY (is_showing) REFERENCES TRIP_REPORTS(trip_report_id)"
-                       "FOREIGN KEY (user_id) REFERENCES USER_PROFILE(user_id))")
+                       #"FOREIGN KEY (user_id) REFERENCES USER_PROFILE(user_id))")
 
         cursor.execute("CREATE TABLE SUBSTANCE_TABLE ("
                        "substance_id int primary key,"
@@ -46,8 +48,8 @@ with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE=
                        "category varchar(255))")
 
         cursor.execute("CREATE TABLE TEXT_ANALYSIS ("
-                       "trip_report_id int PRIMARY KEY,"
+                       "text_trip_report_id int PRIMARY KEY,"
                        "user_profile_id int,"
-                       "tags varchar(255),"
-                       "FOREIGN KEY (trip_report_id) REFERENCES TRIP_REPORTS(trip_report_id),"
-                       "FOREIGN KEY (user_profile_id) REFERENCES USER_PROFILE(user_id))")
+                       "tags varchar(255) ) ")
+                      # "FOREIGN KEY (trip_report_id) REFERENCES TRIP_REPORTS(trip_report_id),")
+                      # "FOREIGN KEY (user_profile_id) REFERENCES USER_PROFILE(user_id))")

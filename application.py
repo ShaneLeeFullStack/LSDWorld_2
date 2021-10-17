@@ -89,24 +89,33 @@ def submit_trip_report_page():
 
 @app.route('/submit_trip_report', methods=['GET', 'POST'])
 def submit_trip_report():
-    #new_substance_name = request.form['substance_name']
-    #print(new_substance_name)
+    new_substance_name = request.form['substance_name']
+    print(new_substance_name)
+    cursor.execute("INSERT INTO TRIP_REPORTS ("
+                   "trip_report_id,"
+                   "user_id,"
+                   "title,"
+                   "substance_id,"
+                   "report_content)"
+                   ""
+                   "VALUES(6,6, 'my first trip report', 0, 'sample report content' )")
+
     #substance_id = substance_table.query.filter_by(
     #    substance_name=request.form['substance_name']
     #         ).first().substance_id
-    #print(substance_row)
-    #title = request.form['title']
+    ##title = request.form['title']
     #report_content = request.form['report_content']
     #print(report_content)
     #new_trip_report = trip_reports(
-    #    trip_report_id=4,
-    #    user_id=4,
+    #    trip_report_id=5,
+    #    user_id=5,
     #    title=request.form['title'],
     #    substance_id=substance_id,
     #    report_content=request.form['report_content']
     #    )
     #db.session.add(new_trip_report)
     #db.session.commit()
+    print("we finished method????")
     return redirect('submit_trip_report_page')
 
 # @app.route('/home_page', methods =['GET', 'POST'])
