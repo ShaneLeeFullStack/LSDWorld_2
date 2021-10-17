@@ -132,26 +132,12 @@ def map_page():
 
 @app.route('/create_profile_page', methods=['GET', 'POST'])
 def create_profile_page():
-
     return render_template('create_profile_form.html')
 
 
 @app.route('/create_profile', methods=['GET','POST'])
 def create_profile():
-    new_profile = user_profile(name=request.form['name'],
-    gender_identity = request.form['gender_identity'],
-    phone_number = request.form['phone_number'],
-    city = request.form['city'],
-    tripsitter = True,
-    safety_contact_name = request.form['safety_contact_name'],
-    safety_contact_phone_number = request.
-                               form['safety_contact_phone_number']
-                               )
-    db.session.add(new_profile)
-    db.session.commit()
-
-
-    return redirect('create_profile_page')
+   return redirect('create_profile_page')
 
 @app.route('/need_help', methods=['GET', 'POST'])
 def need_help():
@@ -163,6 +149,3 @@ def need_help():
 #    return render_template('auth.html')
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80, debug=True)
-
-# {% extends "templates/layout_auth.html" %}
-# {{ super()}}
