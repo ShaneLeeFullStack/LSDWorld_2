@@ -63,3 +63,5 @@ with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE=
                    "substance_id,"
                    "report_content)"
                    "VALUES(9,9, 'my first trip report', 0, 'sample report content' )")
+        cursor.close()
+        conn.close()
