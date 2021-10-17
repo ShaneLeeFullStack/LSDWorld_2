@@ -4,26 +4,9 @@ from flask import Flask, url_for, request, render_template, redirect
 import sqlite3 as sql
 from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy
-import pyodbc
 
+from testsqlite import cursor
 
-server = 'lsdworld-server.database.windows.net'
-database = 'lsdworld_database'
-username = 'azureuser'
-password = '{gHostbat9&}'
-driver = '{ODBC Driver 17 for SQL Server}'
-
-
-
-with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password) as conn:
-    with conn.cursor() as cursor:
-        cursor.execute("SELECT TOP 3 name, collation_name FROM sys.databases")
-        #cursor.execute("SELECT * FROM SalesLT.Address")
-
-        row = cursor.fetchone()
-        while row:
-            print (str(row[0]) + " " + str(row[1]))
-            row = cursor.fetchone()
 
 def get_time():
     return datetime.datetime.utcnow()
@@ -93,13 +76,13 @@ def submit_trip_report_page():
 def submit_trip_report():
     #new_substance_name = request.form['substance_name']
     #print(new_substance_name)
-    #cursor.execute("INSERT INTO TRIP_REPORTS ("
-    #               "trip_report_id,"
-    #               "user_id,"
-    #               "title,"
-    #               "substance_id,"
-    #               "report_content)"
-    #               "VALUES(6,6, 'my first trip report', 0, 'sample report content' )")
+    cursor.execute("INSERT INTO TRIP_REPORTS ("
+                   "trip_report_id,"
+                   "user_id,"
+                   "title,"
+                   "substance_id,"
+                   "report_content)"
+                   "VALUES(7,7, 'doeds it work 7', 0, 'sample report content' )")
 
     #substance_id = substance_table.query.filter_by(
     #    substance_name=request.form['substance_name']

@@ -55,3 +55,11 @@ with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE=
                        "tags varchar(255) ) ")
                       # "FOREIGN KEY (trip_report_id) REFERENCES TRIP_REPORTS(trip_report_id),")
                       # "FOREIGN KEY (user_profile_id) REFERENCES USER_PROFILE(user_id))")
+
+        cursor.execute("INSERT INTO TRIP_REPORTS ("
+                  "trip_report_id,"
+                   "user_id,"
+                   "title,"
+                   "substance_id,"
+                   "report_content)"
+                   "VALUES(8,8, 'my first trip report', 0, 'sample report content' )")
