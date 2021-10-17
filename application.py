@@ -97,9 +97,10 @@ def submit_trip_report():
     substance_id = substance_table.query.filter_by(
         substance_name=request.form['substance_name']
              ).first().substance_id
-    #title = request.form['title']
-    #report_content = request.form['report_content']
-    #print(report_content)
+    print(substance_id)
+    title = request.form['title']
+    report_content = request.form['report_content']
+    print(report_content)
     #new_trip_report = trip_reports(
     #    trip_report_id=5,
     #    user_id=5,
