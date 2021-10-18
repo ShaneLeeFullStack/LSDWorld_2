@@ -1,4 +1,4 @@
-from sqlalchemy import ForeignKey
+from sqlalchemy import ForeignKey, create_engine
 import datetime
 from flask import Flask, url_for, request, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
@@ -21,6 +21,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc:///?odbc_connect=%s" % par
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///lsdworld_database.db'
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 #extensions
+conn_str = 'mssql+pyodbc:///?odbc_connect={}'.format(params)
+engine_azure = create_engine(conn_str, echo=True)
+print(engine_azure.table_names())
 db = SQLAlchemy(app)
 
 
