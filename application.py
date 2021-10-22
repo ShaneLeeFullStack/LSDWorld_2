@@ -6,24 +6,24 @@ import pyodbc
 import urllib.parse
 import os
 # Configure Database URI:
-params = urllib.parse.quote_plus("Driver={ODBC Driver 17 for SQL Server};"
-                                 "Server=tcp:lsdworld-server.database.windows.net,1433;"
-                                 "Database=lsdworld_database;Uid=azureuser;"
-                                 "Pwd={gHostbat9&};"
-                                 "Encrypt=yes;"
-                                 "TrustServerCertificate=no;"
-                                 "Connection Timeout=30;")
+#params = urllib.parse.quote_plus("Driver={ODBC Driver 17 for SQL Server};"
+#                                 "Server=tcp:lsdworld-server.database.windows.net,1433;"
+#                                 "Database=lsdworld_database;Uid=azureuser;"
+#                                 "Pwd={gHostbat9&};"
+#                                 "Encrypt=yes;"
+#                                 "TrustServerCertificate=no;"
+#                                 "Connection Timeout=30;")
 
 
 # Initialization
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc:///?odbc_connect=%s" % params
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///lsdworld_database.db'
+#app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc:///?odbc_connect=%s" % params
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///lsdworld_database.db'
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 #extensions
-conn_str = 'mssql+pyodbc:///?odbc_connect={}'.format(params)
-engine_azure = create_engine(conn_str, echo=True)
-print(engine_azure.table_names())
+#conn_str = 'mssql+pyodbc:///?odbc_connect={}'.format(params)
+#engine_azure = create_engine(conn_str, echo=True)
+#print(engine_azure.table_names())
 db = SQLAlchemy(app)
 
 
