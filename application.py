@@ -17,14 +17,14 @@ params = urllib.parse.quote_plus("Driver={ODBC Driver 17 for SQL Server};"
 
 # Initialization
 app = Flask(__name__)
-#app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc:///?odbc_connect=%s" % params
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///lsdworld_database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc:///?odbc_connect=%s" % params
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///lsdworld_database.db'
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 #extensions
-#conn_str = 'mssql+pyodbc:///?odbc_connect={}'.format(params)
-#engine_azure = create_engine(conn_str, echo=True)
-#insp = inspect(engine_azure)
-#print(insp.get_table_names())
+conn_str = 'mssql+pyodbc:///?odbc_connect={}'.format(params)
+engine_azure = create_engine(conn_str, echo=True)
+insp = inspect(engine_azure)
+print(insp.get_table_names())
 db = SQLAlchemy(app)
 
 
