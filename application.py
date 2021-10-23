@@ -96,10 +96,10 @@ def submit_trip_report():
    #                "report_content)"
    #                "VALUES(7,7, 'doeds it work 7', 0, 'sample report content' )")
 
-    #substance_id = substance_table.query.filter_by(
-    #    substance_name=request.form['substance_name']
-    #         ).first().substance_id
-    ##print(substance_id)
+    substance_id = substance_table.query.filter_by(
+        substance_name=request.form['substance_name']
+             ).first().substance_id
+    print(substance_id)
     title = request.form['title']
     report_content = request.form['report_content']
     print(report_content)
@@ -111,7 +111,7 @@ def submit_trip_report():
     #    report_content=request.form['report_content']
     #    )
     #db.session.add(new_trip_report)
-    #db.session.commit()
+    db.session.commit()
     print("we finished method????")
     return redirect('submit_trip_report_page')
 
