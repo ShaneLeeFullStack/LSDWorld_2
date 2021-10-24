@@ -1,4 +1,4 @@
-from sqlalchemy import ForeignKey, create_engine, Integer, String, insert, Column, MetaData, Table
+from sqlalchemy import ForeignKey, select, create_engine, Integer, String, insert, Column, MetaData, Table
 from sqlalchemy.orm import Session
 import datetime
 from flask import Flask, url_for, request, render_template, redirect
@@ -41,7 +41,7 @@ sub_table = Table('sub_table', meta,
 
 trip_reports_4 = Table('trip_reports_4', meta,
                    Column('report_id', Integer, primary_key=True),
-                   Column('substance_name', String),
+                   Column('substance_id', Integer),
                    Column('title', String),
                    Column('report_content', String))
 meta.create_all(engine_azure)
@@ -81,29 +81,33 @@ def submit_trip_report_page():
 
 @app.route('/submit_trip_report', methods=['GET', 'POST'])
 def submit_trip_report():
-    #result = Session.query(trip_reports_class).filter(trip_reports_class.user_id == 12)
-    #with engine_azure.connect() as az_eng_conn:
     new_substance_name = request.form['substance_name']
-    #substance_id = sub_table.query.filter_by(
-    #    substance_name=request.form['substance_name']
-    # ).first().substance_id
-    #print(substance_id)
-    #print(result)
-    insertion_statement = insert(sub_table).values(
-        substance_id=request.form['substance_name'],
-        substance_name=request.form['substance_name'])
-    insert_trip_reports_4 = insert(trip_reports_4).values(
-        report_id=request.form['substance_name'],
-        substance_name=request.form['substance_name'],
-        #title=request.form['title'],
-        report_content=request.form['report_content'],
+    sub_id_query = select(sub_table).where(
+        sub_table.c.substance_name ==
+        request.form['substance_name'])
+    substance_id_result = engine_azure.connect().execute(sub_id_query)
 
-    )
-    engine_azure.connect().execute(insertion_statement)
-    engine_azure.connect().execute((insert_trip_reports_4))
-    #result = Session.query(Base.metadata.tables[sub_table]).all()
-    #print(result)
-    #engine_azure.connect().commit()
+    # below code should print number 2
+    print(substance_id_result.first()[0])
+    #insertion_statement = insert(sub_table).values(
+    #    substance_id= substance_id_result.first()[0],
+    #    substance_name=request.form['substance_name'])
+    #insert_trip_reports_4 = insert(trip_reports_4).values(
+    #    report_id=request.form['substance_name'],
+    #    substance_name=request.form['substance_name'],
+    #    #title=request.form['title'],
+    #    report_content=request.form['report_content'],
+    #)
+    selection_query = select(sub_table).where(sub_table.columns.substance_id == 1)
+
+    with engine_azure.connect() as conn:
+        #conn.execute(insertion_statement)
+        #conn.execute((insert_trip_reports_4))
+        result = conn.execute(selection_query)
+        print(result.first()[1])
+
+
+    print(sub_table.columns.keys())
     title = request.form['title']
     report_content = request.form['report_content']
     engine_azure.execute("SET IDENTITY_INSERT dbo.TRIP_REPORTS ON")
