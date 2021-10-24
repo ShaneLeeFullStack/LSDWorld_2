@@ -61,3 +61,12 @@
 #    id = db.Column(db.Integer, ForeignKey(trip_reports.trip_report_id), primary_key=True)
 #    user_profile_id = db.Column(db.Integer, db.ForeignKey('user_profile.user_id'))
 #    tags = db.Column(db.String)
+
+engine_azure.execute("INSERT INTO TRIP_REPORTS ("
+                         "report_id,"
+                         "user_id,"
+                         "title,"
+                         "substance_id,"
+                         "substance_name,"
+                         "report_content)"
+                         "VALUES(2390,12, 'second title' , 4,  'marijuana','first report content')")

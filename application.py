@@ -38,6 +38,12 @@ meta = MetaData()
 sub_table = Table('sub_table', meta,
                    Column('substance_id', Integer, primary_key=True),
                    Column('substance_name', String))
+
+trip_reports_4 = Table('trip_reports_4', meta,
+                   Column('report_id', Integer, primary_key=True),
+                   Column('substance_name', String),
+                   Column('title', String),
+                   Column('report_content', String))
 meta.create_all(engine_azure)
 
 #class trip_reports_class(Base):
@@ -83,23 +89,24 @@ def submit_trip_report():
     # ).first().substance_id
     #print(substance_id)
     #print(result)
-    insertion_statement = insert(sub_table).values(substance_id = request.form['substance_name'],
-                                                   substance_name = 'dmt')
+    insertion_statement = insert(sub_table).values(
+        substance_id=request.form['substance_name'],
+        substance_name=request.form['substance_name'])
+    insert_trip_reports_4 = insert(trip_reports_4).values(
+        report_id=request.form['substance_name'],
+        substance_name=request.form['substance_name'],
+        #title=request.form['title'],
+        report_content=request.form['report_content'],
+
+    )
     engine_azure.connect().execute(insertion_statement)
-    result = Session.query(Base.metadata.tables[sub_table]).all()
-    print(result)
+    engine_azure.connect().execute((insert_trip_reports_4))
+    #result = Session.query(Base.metadata.tables[sub_table]).all()
+    #print(result)
     #engine_azure.connect().commit()
     title = request.form['title']
     report_content = request.form['report_content']
     engine_azure.execute("SET IDENTITY_INSERT dbo.TRIP_REPORTS ON")
-    engine_azure.execute("INSERT INTO TRIP_REPORTS ("
-                         "report_id,"
-                         "user_id,"
-                         "title,"
-                         "substance_id,"
-                         "substance_name,"
-                         "report_content)"
-                         "VALUES(100,12, 'second title' , 4,  'marijuana','first report content')")
     db.session.commit()
     return redirect('submit_trip_report_page')
 
