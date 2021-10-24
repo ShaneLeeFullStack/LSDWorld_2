@@ -1,0 +1,63 @@
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///lsdworld_database.db'
+
+
+#class user_profile(db.Model):
+#    user_id = db.Column(db.Integer, primary_key=True)
+#    name = db.Column(db.Text)
+#    gender_identity = db.Column(db.String)
+#    phone_number = db.Column(db.String, unique=True, nullable=False)
+#    email = db.Column(db.String, unique=True)
+#    city = db.Column(db.Text)
+#    tripsitter = db.Column(db.Boolean)
+#    safety_contact_name = db.Column(db.Text)
+#    safety_contact_phone_number = db.Column(db.Text)
+
+    #engine_azure.execute("CREATE TABLE dbo.USER_PROFILE ("
+    #                     "user_id INTEGER IDENTITY PRIMARY KEY,"
+    #                     "name VARCHAR(50),"
+    #                     "gender_identity VARCHAR(50),"
+    #                     "phone_number INTEGER,"
+    #                     "email VARCHAR(50),"
+    #                     "city VARCHAR(50),"
+    #                     "tripsitter INTEGER,"
+    #                     "safety_contact_name VARCHAR(50),"
+    #                     "safety_contact_phone_number INTEGER)")
+
+    # engine_azure.execute("CREATE TABLE dbo.substance_table ("
+    #                     "substance_id INT IDENTITY PRIMARY KEY,"
+    #                     "substance_name VARCHAR (40),"
+    #                     "category VARCHAR(40) )")
+
+    # engine_azure.execute("CREATE TABLE dbo.TEXT_ANALYSIS ("
+    #                     "report_id INT IDENTITY PRIMARY KEY,"
+    #                     "user_profile_id INT,"
+    #                     "tags VARCHAR(50))")
+
+    #engine_azure.execute("CREATE TABLE dbo.TRIP_REPORTS ("
+    #                     "report_id INTEGER IDENTITY PRIMARY KEY,"
+    #                     "date VARCHAR(15),"
+    #                     "user_id INT ,"
+    #                     "title VARCHAR(50),"
+    #                     "substance_id INT,"
+    #                     "substance_name VARCHAR(20),"
+    #                     "report_content VARCHAR(500))")
+
+# class trip_reports(db.Model):
+#    trip_report_id = db.Column(db.Integer, primary_key=True,
+#                               autoincrement=True,
+#                               )
+#    date = db.Column(db.Text, default=get_time())
+#    user_id = db.Column(db.Integer,
+#                        # db.ForeignKey('user_profile.user_id'),
+#                        nullable=False)
+#    title = db.Column(db.Text)
+#    substance_id = db.Column(db.Integer, db.ForeignKey('substance_table.substance_id'),
+#                             nullable=False)
+#    report_content = db.Column(db.Text)
+#    is_showing = db.Column(db.Integer, db.ForeignKey('trip_reports.trip_report_id'))
+
+
+# class text_analysis(db.Model):
+#    id = db.Column(db.Integer, ForeignKey(trip_reports.trip_report_id), primary_key=True)
+#    user_profile_id = db.Column(db.Integer, db.ForeignKey('user_profile.user_id'))
+#    tags = db.Column(db.String)

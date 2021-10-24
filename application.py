@@ -4,7 +4,6 @@ from flask import Flask, url_for, request, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
 import pyodbc
 import urllib.parse
-import os
 
 # Configure Database URI:
 params = urllib.parse.quote_plus("Driver={ODBC Driver 17 for SQL Server};"
@@ -18,58 +17,15 @@ params = urllib.parse.quote_plus("Driver={ODBC Driver 17 for SQL Server};"
 # Initialization
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc:///?odbc_connect=%s" % params
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///lsdworld_database.db'
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 # extensions
 conn_str = 'mssql+pyodbc:///?odbc_connect={}'.format(params)
 engine_azure = create_engine(conn_str, echo=True)
-# conn = engine_azure.connect()
-# insp = inspect(engine_azure)
-# print(insp.get_table_names())
 db = SQLAlchemy(app)
-
-
-class user_profile(db.Model):
-    user_id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Text)
-    gender_identity = db.Column(db.String)
-    phone_number = db.Column(db.String, unique=True, nullable=False)
-    email = db.Column(db.String, unique=True)
-    city = db.Column(db.Text)
-    tripsitter = db.Column(db.Boolean)
-    safety_contact_name = db.Column(db.Text)
-    safety_contact_phone_number = db.Column(db.Text)
-
-
-class substance_table(db.Model):
-    substance_id = db.Column(db.Integer, primary_key=True, nullable=False)
-    substance_name = db.Column(db.Text, unique=True, nullable=False)
-    category = db.Column(db.String)
 
 
 def get_time():
     return datetime.datetime.utcnow()
-
-
-class trip_reports(db.Model):
-    trip_report_id = db.Column(db.Integer, primary_key=True,
-                               autoincrement=True,
-                               )
-    date = db.Column(db.Text, default=get_time())
-    user_id = db.Column(db.Integer,
-                        #db.ForeignKey('user_profile.user_id'),
-                        nullable=False)
-    title = db.Column(db.Text)
-    substance_id = db.Column(db.Integer, db.ForeignKey('substance_table.substance_id'),
-                             nullable=False)
-    report_content = db.Column(db.Text)
-    is_showing = db.Column(db.Integer, db.ForeignKey('trip_reports.trip_report_id'))
-
-
-class text_analysis(db.Model):
-    id = db.Column(db.Integer, ForeignKey(trip_reports.trip_report_id), primary_key=True)
-    user_profile_id = db.Column(db.Integer, db.ForeignKey('user_profile.user_id'))
-    tags = db.Column(db.String)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -90,36 +46,22 @@ def submit_trip_report_page():
 @app.route('/submit_trip_report', methods=['GET', 'POST'])
 def submit_trip_report():
     new_substance_name = request.form['substance_name']
-    #print(new_substance_name)
-    newtripuserid = trip_reports.query.filter_by(
-        user_id = 9).first().user_id
-    print(newtripuserid)
-    substance_id = substance_table.query.filter_by(
-        substance_name=request.form['substance_name']
-    ).first().substance_id
-    #print(substance_id)
+    # substance_id = dbo.SUBSTANCE_TABLE.query.filter_by(
+    #    substance_name=request.form['substance_name']
+    # ).first().substance_id
+    # print(substance_id)
     title = request.form['title']
     report_content = request.form['report_content']
-    #print(report_content)
-    new_trip_report = insert(trip_reports).values(
-        trip_report_id=5,
-        user_id=5,
-        substance_id=substance_id)
-    compiled = new_trip_report.compile()
-    print(new_trip_report)
-    # new_trip_report = trip_reports(
-    #    trip_report_id=5,
-    #    user_id=5,
-    #    title=request.form['title'],
-    #    substance_id=substance_id,
-    #    report_content=request.form['report_content']
-    #    )
-
-    #db.session.add(new_trip_report)
-    # inserted_new_TR = conn.execute(new_trip_report)
-    # conn.commit()
+    engine_azure.execute("SET IDENTITY_INSERT dbo.TRIP_REPORTS ON")
+    engine_azure.execute("INSERT INTO TRIP_REPORTS ("
+                         "report_id,"
+                         "user_id,"
+                         "title,"
+                         "substance_id,"
+                         "substance_name,"
+                         "report_content)"
+                         "VALUES(1,12, 'second title' , 4,  'marijuana','first report content')")
     db.session.commit()
-    print("we finished method????")
     return redirect('submit_trip_report_page')
 
 
@@ -156,11 +98,3 @@ def need_help():
 #    return render_template('auth.html')
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80, debug=True)
-
-# cursor.execute("INSERT INTO TRIP_REPORTS ("
-#                "trip_report_id,"
-#                "user_id,"
-#                "title,"
-#                "substance_id,"
-#                "report_content)"
-#                "VALUES(7,7, 'doeds it work 7', 0, 'sample report content' )")
