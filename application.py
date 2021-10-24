@@ -103,14 +103,14 @@ def submit_trip_report():
     title = request.form['title']
     report_content = request.form['report_content']
     print(report_content)
-    #new_trip_report = trip_reports(
-    #    trip_report_id=5,
-    #    user_id=5,
-    #    title=request.form['title'],
-    #    substance_id=substance_id,
-    #    report_content=request.form['report_content']
-    #    )
-    #db.session.add(new_trip_report)
+    new_trip_report = trip_reports(
+        trip_report_id=5,
+        user_id=5,
+        title=request.form['title'],
+        substance_id=substance_id,
+        report_content=request.form['report_content']
+        )
+    db.session.add(new_trip_report)
     db.session.commit()
     print("we finished method????")
     return redirect('submit_trip_report_page')
