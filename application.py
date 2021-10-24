@@ -6,12 +6,12 @@ from flask_sqlalchemy import SQLAlchemy
 import pyodbc
 import urllib.parse
 from sqlalchemy.ext.declarative import declarative_base
+
 Base = declarative_base()
+
 
 def get_time():
     return datetime.datetime.utcnow()
-
-
 
 
 # Configure Database URI:
@@ -29,39 +29,21 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc:///?odbc_connect=%s" % par
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 # extensions
 conn_str = 'mssql+pyodbc:///?odbc_connect={}'.format(params)
-engine_azure = create_engine(conn_str, echo=True)
+engine_azure = create_engine(conn_str, echo=False)
 db = SQLAlchemy(app)
 
 meta = MetaData()
 
-
 sub_table = Table('sub_table', meta,
-                   Column('substance_id', Integer, primary_key=True),
-                   Column('substance_name', String))
+                  Column('substance_id', Integer, primary_key=True),
+                  Column('substance_name', String))
 
 trip_reports_4 = Table('trip_reports_4', meta,
-                   Column('report_id', Integer, primary_key=True),
-                   Column('substance_id', Integer),
-                   Column('title', String),
-                   Column('report_content', String))
+                       Column('report_id', Integer, primary_key=True),
+                       Column('substance_id', Integer),
+                       Column('title', String),
+                       Column('report_content', String))
 meta.create_all(engine_azure)
-
-#class trip_reports_class(Base):
-#    __tablename__ = 'trip_reports_class'
-    #trip_report_id = db.Column(db.Integer, primary_key=True,
-    #                           autoincrement=True
-    #                           )
-    #date = db.Column(db.Text, default=get_time())
-    #user_id = db.Column(db.Integer,
-    #                    # db.ForeignKey('user_profile.user_id'),
-    #                    nullable=False)
-    #title = db.Column(db.Text)
-    #substance_id = db.Column(db.Integer, db.ForeignKey('substance_table.substance_id'),
-    #                         nullable=False)
-    #report_content = db.Column(db.Text)
-    #is_showing = db.Column(db.Integer, db.ForeignKey('trip_reports.trip_report_id'))
-
-
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -83,31 +65,29 @@ def submit_trip_report_page():
 def submit_trip_report():
     new_substance_name = request.form['substance_name']
     sub_id_query = select(sub_table).where(
-        sub_table.c.substance_name ==
+        sub_table.columns.substance_name ==
         request.form['substance_name'])
     substance_id_result = engine_azure.connect().execute(sub_id_query)
-
+    new_substance_id = substance_id_result.first()[0]
     # below code should print number 2
-    print(substance_id_result.first()[0])
-    #insertion_statement = insert(sub_table).values(
+    print(new_substance_id)
+    # insertion_statement = insert(sub_table).values(
     #    substance_id= substance_id_result.first()[0],
     #    substance_name=request.form['substance_name'])
-    #insert_trip_reports_4 = insert(trip_reports_4).values(
-    #    report_id=request.form['substance_name'],
-    #    substance_name=request.form['substance_name'],
-    #    #title=request.form['title'],
-    #    report_content=request.form['report_content'],
-    #)
+    insert_trip_reports_4 = insert(trip_reports_4).values(
+        report_id=new_substance_id + 4,
+        substance_id=new_substance_id,
+        title=request.form['title'],
+        report_content=request.form['report_content'],
+    )
     selection_query = select(sub_table).where(sub_table.columns.substance_id == 1)
 
     with engine_azure.connect() as conn:
-        #conn.execute(insertion_statement)
-        #conn.execute((insert_trip_reports_4))
+        # conn.execute(insertion_statement)
+        conn.execute(insert_trip_reports_4)
         result = conn.execute(selection_query)
         print(result.first()[1])
 
-
-    print(sub_table.columns.keys())
     title = request.form['title']
     report_content = request.form['report_content']
     engine_azure.execute("SET IDENTITY_INSERT dbo.TRIP_REPORTS ON")
