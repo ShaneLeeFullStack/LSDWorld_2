@@ -8,3 +8,4 @@ requests~=2.25.1
 pyowm~=3.2.0
 geocoder~=1.38.1
 pyodbc
+vue~=2.6.11
