@@ -42,7 +42,8 @@ TRIP_REPORTS = Table('TRIP_REPORTS', meta,
                      Column('report_id', Integer, primary_key=True, autoincrement=True),
                      Column('substance_id', Integer),
                      Column('title', String),
-                     Column('report_content', String)
+                     Column('report_content', String),
+                     #Column('diff_headspace',)
                      )
 USER_PROFILE = Table('USER_PROFILE', meta,
                      Column('user_id', Integer, primary_key=True, autoincrement=True),
@@ -75,10 +76,10 @@ def submit_trip_report_page():
 @app.route('/submit_trip_report', methods=['GET', 'POST'])
 def submit_trip_report():
     # inserting into substances
-    insert_new_substance = insert(SUBSTANCES).values(
-        substance_name=request.form['substance_name']
-    )
-    engine_azure.connect().execute(insert_new_substance)
+    # insert_new_substance = insert(SUBSTANCES).values(
+    #    substance_name=request.form['substance_name']
+    # )
+    # engine_azure.connect().execute(insert_new_substance)
     # this is me getting id of substance user entered
     sub_id_query = select(SUBSTANCES).where(
         SUBSTANCES.columns.substance_name ==
@@ -91,12 +92,8 @@ def submit_trip_report():
         title=request.form['title'],
         report_content=request.form['report_content'],
     )
-
-
     with engine_azure.connect() as conn:
         conn.execute(insert_trip_reports_4)
-
-    db.session.commit()
     return redirect('submit_trip_report_page')
 
 
