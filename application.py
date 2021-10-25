@@ -6,6 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 import pyodbc
 import urllib.parse
 from sqlalchemy.ext.declarative import declarative_base
+
 Base = declarative_base()
 
 
@@ -33,15 +34,23 @@ db = SQLAlchemy(app)
 
 meta = MetaData()
 
-sub_table = Table('sub_table', meta,
-                  Column('substance_id', Integer, primary_key=True, autoincrement=True),
-                  Column('substance_name', String))
+SUBSTANCES = Table('SUBSTANCES', meta,
+                   Column('substance_id', Integer, primary_key=True, autoincrement=True),
+                   Column('substance_name', String))
 
-trip_reports_4 = Table('trip_reports_4', meta,
-                       Column('report_id', Integer, primary_key=True, autoincrement=True),
-                       Column('substance_id', Integer),
-                       Column('title', String),
-                       Column('report_content', String))
+TRIP_REPORTS = Table('TRIP_REPORTS', meta,
+                     Column('report_id', Integer, primary_key=True, autoincrement=True),
+                     Column('substance_id', Integer),
+                     Column('title', String),
+                     Column('report_content', String))
+USER_PROFILE = Table('USER_PROFILE', meta,
+                     Column('user_id', Integer, primary_key=True, autoincrement=True),
+                     Column('user_name', String),
+                     Column('user_phone_number', Integer),
+                     Column('user_city', String),
+                     Column('safety_contact_name', String),
+                     Column('safety_contact_phone_number', String)
+                     )
 # magic happens at this line, where we create our sqlalchemy
 # database in our azure cloud engine, so it is stored in azure cloud
 meta.create_all(engine_azure)
@@ -64,32 +73,26 @@ def submit_trip_report_page():
 
 @app.route('/submit_trip_report', methods=['GET', 'POST'])
 def submit_trip_report():
-    new_substance_name = request.form['substance_name']
-    sub_id_query = select(sub_table).where(
-        sub_table.columns.substance_name ==
+    # this is me getting id of substance user entered
+    sub_id_query = select(SUBSTANCES).where(
+        SUBSTANCES.columns.substance_name ==
         request.form['substance_name'])
     substance_id_result = engine_azure.connect().execute(sub_id_query)
     new_substance_id = substance_id_result.first()[0]
-    # below code should print number 2
     print(new_substance_id)
-    # insertion_statement = insert(sub_table).values(
-    #    substance_id= substance_id_result.first()[0],
-    #    substance_name=request.form['substance_name'])
-    insert_trip_reports_4 = insert(trip_reports_4).values(
+    # inserting new trip report into database
+    insert_trip_reports_4 = insert(TRIP_REPORTS).values(
         substance_id=new_substance_id,
         title=request.form['title'],
         report_content=request.form['report_content'],
     )
-    selection_query = select(sub_table).where(sub_table.columns.substance_id == 1)
+    selection_query = select(SUBSTANCES).where(SUBSTANCES.columns.substance_id == 1)
 
     with engine_azure.connect() as conn:
-        # conn.execute(insertion_statement)
         conn.execute(insert_trip_reports_4)
         result = conn.execute(selection_query)
         print(result.first()[1])
-
-    title = request.form['title']
-    report_content = request.form['report_content']
+    # below are unnecessary statements
     engine_azure.execute("SET IDENTITY_INSERT dbo.TRIP_REPORTS ON")
     db.session.commit()
     return redirect('submit_trip_report_page')
@@ -110,6 +113,11 @@ def map_page():
 
 @app.route('/create_profile_page', methods=['GET', 'POST'])
 def create_profile_page():
+    user_name = request.form['name']
+    user_phone_number = request.form['phone_number']
+    user_city = request.form['city']
+    user_safety_contact_name = request.form['safety_contact_name']
+    user_safety_contact_phone_number = request.form['safety_contact_phone_number']
     return render_template('create_profile_form.html')
 
 
