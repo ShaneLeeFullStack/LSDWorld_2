@@ -36,13 +36,14 @@ meta = MetaData()
 
 SUBSTANCES = Table('SUBSTANCES', meta,
                    Column('substance_id', Integer, primary_key=True, autoincrement=True),
-                   Column('substance_name', String))
-
+                   Column('substance_name', String)
+                   )
 TRIP_REPORTS = Table('TRIP_REPORTS', meta,
                      Column('report_id', Integer, primary_key=True, autoincrement=True),
                      Column('substance_id', Integer),
                      Column('title', String),
-                     Column('report_content', String))
+                     Column('report_content', String)
+                     )
 USER_PROFILE = Table('USER_PROFILE', meta,
                      Column('user_id', Integer, primary_key=True, autoincrement=True),
                      Column('user_name', String),
@@ -73,27 +74,28 @@ def submit_trip_report_page():
 
 @app.route('/submit_trip_report', methods=['GET', 'POST'])
 def submit_trip_report():
+    # inserting into substances
+    insert_new_substance = insert(SUBSTANCES).values(
+        substance_name=request.form['substance_name']
+    )
+    engine_azure.connect().execute(insert_new_substance)
     # this is me getting id of substance user entered
     sub_id_query = select(SUBSTANCES).where(
         SUBSTANCES.columns.substance_name ==
         request.form['substance_name'])
     substance_id_result = engine_azure.connect().execute(sub_id_query)
     new_substance_id = substance_id_result.first()[0]
-    print(new_substance_id)
     # inserting new trip report into database
     insert_trip_reports_4 = insert(TRIP_REPORTS).values(
         substance_id=new_substance_id,
         title=request.form['title'],
         report_content=request.form['report_content'],
     )
-    selection_query = select(SUBSTANCES).where(SUBSTANCES.columns.substance_id == 1)
+
 
     with engine_azure.connect() as conn:
         conn.execute(insert_trip_reports_4)
-        result = conn.execute(selection_query)
-        print(result.first()[1])
-    # below are unnecessary statements
-    engine_azure.execute("SET IDENTITY_INSERT dbo.TRIP_REPORTS ON")
+
     db.session.commit()
     return redirect('submit_trip_report_page')
 
