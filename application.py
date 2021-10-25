@@ -1,4 +1,7 @@
+from py4web.utils import url_signer
 from sqlalchemy import ForeignKey, select, create_engine, Integer, String, insert, Column, MetaData, Table
+from sqlalchemy.engine import URL
+from py4web import URL
 from sqlalchemy.orm import Session
 import datetime
 from flask import Flask, url_for, request, render_template, redirect
@@ -94,6 +97,8 @@ def submit_trip_report():
     )
     with engine_azure.connect() as conn:
         conn.execute(insert_trip_reports_4)
+
+    return dict(fetch_profile_fields=URL('fetch_profile_fields', signer=url_signer))
     return redirect('submit_trip_report_page')
 
 
@@ -112,13 +117,20 @@ def map_page():
     return render_template('map_form.html')
 
 
+
+@app.route('/fetch_profile_fields', methods=['GET','POST'])
+def fetch_profile_fields():
+    return dict(fetch_profile_fields=URL('fetch_profile_fields', signer=url_signer))
+
 @app.route('/create_profile_page', methods=['GET', 'POST'])
 def create_profile_page():
+#def fetch_profile_fields():
     #user_name = request.form['user_name']
     user_phone_number = request.form['phone_number']
     user_city = request.form['city']
     user_safety_contact_name = request.form['safety_contact_name']
     user_safety_contact_phone_number = request.form['safety_contact_phone_number']
+    return dict(fetch_profile_fields=URL('fetch_profile_fields', signer=url_signer))
     return render_template('create_profile_form.html')
 
 
