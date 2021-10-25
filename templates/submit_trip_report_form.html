@@ -39,6 +39,20 @@
                 </div>
             </div>
 
+            <div class="level is-mobile">
+                <div class="level-left">
+                    <div class="level-item">
+                        <div class="field">
+                            <input list="dosage_units_list" name="dosage_units"
+                                   id="input_dosage_units" placeholder="mcg">
+                            <datalist id="dosage_units_list">
+                                <option v-for="dose in dosage_units_list">{{ dose }}</option>
+                            </datalist>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!--Dosage Field -->
             <div class="level is-mobile">
                 <div class="level-left">
@@ -51,7 +65,7 @@
                             </datalist>
                         </div>
                     </div>
-                    <div class="level-item">
+                 <!--   <div class="level-item">
                         <div class="field">
                             <input list="dosage_units_list" name="dosage_units"
                                    id="input_dosage_units" placeholder="mcg">
@@ -59,7 +73,7 @@
                                 <option v-for="dose in dosage_units_list">{{ dose }}</option>
                             </datalist>
                         </div>
-                    </div>
+                    </div>-->
 
                     <div class="level-item">
 
@@ -190,7 +204,9 @@
     let fetch_profile_fields = "[[=XML(fetch_profile_fields)]]"
     let fetch_tags = "[[=XML(fetch_tags)]]";
 </script>
-
+  <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js">
+    </script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 <script src="../static/js/home_page.js"></script>
 <script  src="../static/js/vue.js"  ></script>
