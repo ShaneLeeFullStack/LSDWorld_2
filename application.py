@@ -6,7 +6,6 @@ from flask_sqlalchemy import SQLAlchemy
 import pyodbc
 import urllib.parse
 from sqlalchemy.ext.declarative import declarative_base
-
 Base = declarative_base()
 
 
@@ -35,14 +34,16 @@ db = SQLAlchemy(app)
 meta = MetaData()
 
 sub_table = Table('sub_table', meta,
-                  Column('substance_id', Integer, primary_key=True),
+                  Column('substance_id', Integer, primary_key=True, autoincrement=True),
                   Column('substance_name', String))
 
 trip_reports_4 = Table('trip_reports_4', meta,
-                       Column('report_id', Integer, primary_key=True),
+                       Column('report_id', Integer, primary_key=True, autoincrement=True),
                        Column('substance_id', Integer),
                        Column('title', String),
                        Column('report_content', String))
+# magic happens at this line, where we create our sqlalchemy
+# database in our azure cloud engine, so it is stored in azure cloud
 meta.create_all(engine_azure)
 
 
@@ -75,7 +76,6 @@ def submit_trip_report():
     #    substance_id= substance_id_result.first()[0],
     #    substance_name=request.form['substance_name'])
     insert_trip_reports_4 = insert(trip_reports_4).values(
-        report_id=new_substance_id + 4,
         substance_id=new_substance_id,
         title=request.form['title'],
         report_content=request.form['report_content'],
