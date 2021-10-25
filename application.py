@@ -114,7 +114,7 @@ def map_page():
 
 @app.route('/create_profile_page', methods=['GET', 'POST'])
 def create_profile_page():
-    user_name = request.form['name']
+    #user_name = request.form['user_name']
     user_phone_number = request.form['phone_number']
     user_city = request.form['city']
     user_safety_contact_name = request.form['safety_contact_name']
