@@ -59,7 +59,7 @@ meta.create_all(engine_azure)
 
 
 @app.route('/', methods=['GET', 'POST'])
-def home_page():
+def layout():
     return render_template('layout_auth.html')
 
 
@@ -97,9 +97,11 @@ def submit_trip_report():
     return redirect('submit_trip_report_page')
 
 
-# @app.route('/home_page', methods =['GET', 'POST'])
-# def home_page():
-#    return render_template('index.html')
+@app.route('/home_page', methods =['GET', 'POST'])
+def home_page():
+    return render_template('home_page.html')
+
+
 @app.route('/journey_safe_page', methods=['GET', 'POST'])
 def journey_safe():
     return render_template('journey_safe_form.html')
