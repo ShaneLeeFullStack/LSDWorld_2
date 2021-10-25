@@ -1,7 +1,7 @@
 // This will be the object that will contain the Vue attributes
 // and be used to initialize it.
 let app = {};
-const genders = [ "Female","Male","Agender","Androgyne","Androgynous","Bigender",
+const gender_list = [ "Female","Male","Agender","Androgyne","Androgynous","Bigender",
     "Cis","Cisgender","Cis Female","Cis Male","Cis Man","Cis Woman","Cisgender Female",
     "Cisgender Male","Cisgender Man","Cisgender Woman","Female to Male","FTM","Gender Fluid",
     "Gender Nonconforming","Gender Questioning","Gender Variant","Genderqueer","Intersex",
@@ -55,7 +55,7 @@ let init = (app) => {
   }
 
   app.fetch_genders = () => {
-      app.vue.gender_list = genders;
+      app.vue.gender_list = gender_list;
   }
 
   app.fetch_my_trip_reports = () => {
