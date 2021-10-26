@@ -12,9 +12,8 @@
         <nav class="navbar is-danger">
             <header><h1>Create Your Profile</h1></header>
         </nav>
-        <form method="POST" action="[[=URL('create_profile')]]" id="create_profile_form" enctype="multipart/form-data">
+        <form method="POST" action="create_profile" id="create_profile_form" enctype="multipart/form-data">
             <!--Name Field -->
-
                 <div class="field">
                     <label for="name" class="label">Name</label>
                     <div class="control">
@@ -25,7 +24,7 @@
                 <div class="field">
                  <label for="gender_identity" class="label">I identify my gender as...</label>
               <input list="gender_identity_list"  name="gender_identity" id="browser"
-                        v-model="gender">
+                        v-model="gender_list">
               <datalist id="gender_identity_list">
                   <option v-for="gender in gender_list">{{ gender }}</option>
               </datalist>
@@ -95,5 +94,12 @@
  <script src=
 "https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js">
     </script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="../static/js/home_page.js"></script>
+<script  src="../static/js/vue.js"  ></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
 <script src="../static/js/home_page.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

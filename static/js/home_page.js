@@ -60,7 +60,7 @@ let init = (app) => {
 
   app.fetch_my_trip_reports = () => {
       axios
-          .get(fetch_trip_reports)
+          .get('http://192.168.1.73/fetch_trip_reports')
           .then((result) => {
               app.vue.trip_reports = result.data.trip_reports
           })
@@ -112,6 +112,11 @@ let init = (app) => {
           app.vue.this_report_showing.splice(desiredindex, 1)
       }
   }
+  const path_fetch_profile_fields = ''
+  app.lsd_fetch_profile_fields = () => {
+
+
+  }
 
   app.submit_trip_report = () => {
       let new_trip_report = {
@@ -156,8 +161,10 @@ let init = (app) => {
   }
 
   app.fetch_profile_fields = () => {
-      axios
-          .get(fetch_profile_fields)
+      // below we get object returned by def fetch_profile_fields()
+      // in applications.py
+        axios
+          .get('http://192.168.1.73/fetch_profile_fields')
           .then((result) => {
               app.vue.profile_fields = result.data.profile_fields
           })
@@ -189,17 +196,14 @@ let init = (app) => {
             })
   }
 
-
   //The only purpose of this method is to make a javascript array version of the list of tags
   app.fetch_tags = () => {
       axios
-          .get(fetch_tags)
+          .get('http://192.168.1.73/fetch_tags')
           .then((result) => {
               app.vue.tags = result.data.user_report_tags
           })
   }
-
-
 
   app.delete_report = (report_id) => {
       let report_index_intra =app.vue.trip_reports.findIndex(r => r.id === report_id)

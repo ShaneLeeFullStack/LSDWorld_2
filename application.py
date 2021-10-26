@@ -4,7 +4,7 @@ from sqlalchemy.engine import URL
 from py4web import URL
 from sqlalchemy.orm import Session
 import datetime
-from flask import Flask, url_for, request, render_template, redirect
+from flask import Flask, jsonify, url_for, request, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
 import pyodbc
 import urllib.parse
@@ -46,7 +46,7 @@ TRIP_REPORTS = Table('TRIP_REPORTS', meta,
                      Column('substance_id', Integer),
                      Column('title', String),
                      Column('report_content', String),
-                     #Column('diff_headspace',)
+                     # Column('diff_headspace',)
                      )
 USER_PROFILE = Table('USER_PROFILE', meta,
                      Column('user_id', Integer, primary_key=True, autoincrement=True),
@@ -98,11 +98,11 @@ def submit_trip_report():
     with engine_azure.connect() as conn:
         conn.execute(insert_trip_reports_4)
 
-    return dict(fetch_profile_fields=URL('fetch_profile_fields', signer=url_signer))
+    # return dict(fetch_profile_fields=URL('fetch_profile_fields', signer=url_signer))
     return redirect('submit_trip_report_page')
 
 
-@app.route('/home_page', methods =['GET', 'POST'])
+@app.route('/home_page', methods=['GET', 'POST'])
 def home_page():
     return render_template('home_page.html')
 
@@ -116,26 +116,56 @@ def journey_safe():
 def map_page():
     return render_template('map_form.html')
 
+@app.route('/map_cont', methods=['GET', 'POST'])
+def map_cont():
+    return render_template('map.html')
+    #return dict(map_cont=URL('map_cont', signer=url_signer))
+
+@app.route('/fetch_tags', methods=['GET', 'POST'])
+def fetch_tags():
+    sub_id_query = select(SUBSTANCES).where(
+        SUBSTANCES.columns.substance_name ==
+        'marijuana')
+    substance_id_result = engine_azure.connect().execute(sub_id_query)
+    new_substance_id = substance_id_result.first()[0]
+    fetched_tags = new_substance_id
+    return dict(fetched_tags=fetched_tags)
 
 
-@app.route('/fetch_profile_fields', methods=['GET','POST'])
+@app.route('/fetch_trip_reports', methods=['GET', 'POST'])
+def fetch_trip_reports():
+    sub_id_query = select(SUBSTANCES).where(
+        SUBSTANCES.columns.substance_name ==
+        'marijuana')
+    substance_id_result = engine_azure.connect().execute(sub_id_query)
+    new_substance_id = substance_id_result.first()[0]
+    fetched_trip_reports = new_substance_id
+    return dict(fetched_trip_reports=fetched_trip_reports)
+
+
+@app.route('/fetch_profile_fields', methods=['GET', 'POST'])
 def fetch_profile_fields():
-    return dict(fetch_profile_fields=URL('fetch_profile_fields', signer=url_signer))
+    sub_id_query = select(SUBSTANCES).where(
+        SUBSTANCES.columns.substance_name ==
+        'marijuana')
+    substance_id_result = engine_azure.connect().execute(sub_id_query)
+    new_substance_id = substance_id_result.first()[0]
+    profile_fields = new_substance_id
+    return dict(profile_fields=profile_fields)
+
 
 @app.route('/create_profile_page', methods=['GET', 'POST'])
 def create_profile_page():
-#def fetch_profile_fields():
-    #user_name = request.form['user_name']
-    user_phone_number = request.form['phone_number']
-    user_city = request.form['city']
-    user_safety_contact_name = request.form['safety_contact_name']
-    user_safety_contact_phone_number = request.form['safety_contact_phone_number']
-    return dict(fetch_profile_fields=URL('fetch_profile_fields', signer=url_signer))
     return render_template('create_profile_form.html')
 
 
 @app.route('/create_profile', methods=['GET', 'POST'])
 def create_profile():
+    user_name = request.form['user_name']
+    user_phone_number = request.form['phone_number']
+    user_city = request.form['city']
+    user_safety_contact_name = request.form['safety_contact_name']
+    user_safety_contact_phone_number = request.form['safety_contact_phone_number']
     return redirect('create_profile_page')
 
 
