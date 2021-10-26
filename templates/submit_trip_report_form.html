@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../static/css/elements.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.0/css/all.css">
 </head>
-<div id="vue-target">
+<div id="vue-target-navbar">
     <nav class="navbar is-danger">
         <div class="level is-mobile">
             <div class="level-left">
@@ -19,7 +19,7 @@
                     <div id="mySidenav" class="sidenav">
                         <a onclick="closeNav()" href="javascript:void(0)" class="closebtn">&times;</a>
                         <div class="navbar-item">
-                            <a href="home_page">Home Cocaine Page</a>
+                            <a href="home_page">Home Page</a>
                         </div>
                         <div class="navbar-item">
                             <a href="submit_trip_report_page">New Trip Report</a>
@@ -75,6 +75,7 @@
     <!-- beginning of HTML inserted by extending template -->
     <!--[[include]]-->
 </div>
+
 <div id="vue-target" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
     <section class="section">
         <nav class="navbar is-danger">
@@ -264,7 +265,6 @@
         </form>
     </section>
 </div>
-
 
 <script>
     let fetch_substance_table = "[[=XML(fetch_substance_table)]]"
