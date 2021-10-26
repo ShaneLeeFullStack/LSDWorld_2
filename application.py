@@ -122,6 +122,7 @@ def map_cont():
     #return dict(map_cont=URL('map_cont', signer=url_signer))
 
 @app.route('/fetch_tags', methods=['GET', 'POST'])
+#@app.url_map('create_profile_page.html')
 def fetch_tags():
     sub_id_query = select(SUBSTANCES).where(
         SUBSTANCES.columns.substance_name ==

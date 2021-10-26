@@ -199,7 +199,7 @@ let init = (app) => {
   //The only purpose of this method is to make a javascript array version of the list of tags
   app.fetch_tags = () => {
       axios
-          .get('http://192.168.1.73/fetch_tags')
+          .get('https://192.168.1.73/fetch_tags')
           .then((result) => {
               app.vue.tags = result.data.user_report_tags
           })
