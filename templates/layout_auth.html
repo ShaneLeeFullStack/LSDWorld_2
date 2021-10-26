@@ -13,8 +13,9 @@
 </head>
 
 <body>
+
 {% block navbar %}
-<div id="vue-target">
+<div id="vue-target-navbar">
     <nav class="navbar is-danger">
         <div class="level is-mobile">
             <div class="level-left">
@@ -82,15 +83,15 @@
     <!-- beginning of HTML inserted by extending template -->
     <!--[[include]]-->
 </div>
-<!-- end of HTML inserted by extending template -->
 {% endblock %}
 
 {% block content %}
-
+<!-- EMPTY DELIBERATELY -->
 {% endblock %}
+
 </body>
 
-
+{% block pagescripts %}
 <script src=
 "https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js">
     </script>
@@ -102,6 +103,7 @@
 <script src="../static/js/vue.js"></script>
 <script> Vue.config.devtools = true</script>
 <script src="../static/js/utils.js"></script>
+{% endblock %}
 
 </html>
 
