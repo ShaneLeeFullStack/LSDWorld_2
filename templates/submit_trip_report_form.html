@@ -7,6 +7,74 @@
     <link rel="stylesheet" href="../static/css/elements.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.0/css/all.css">
 </head>
+<div id="vue-target">
+    <nav class="navbar is-danger">
+        <div class="level is-mobile">
+            <div class="level-left">
+                <div class="level-item">
+                    <!-- left dropdown sidenavbar -->
+
+                        <span class="button" onclick="openNav()"><i class="fa fa-bars fa-fw"></i></span>
+
+                    <div id="mySidenav" class="sidenav">
+                        <a onclick="closeNav()" href="javascript:void(0)" class="closebtn">&times;</a>
+                        <div class="navbar-item">
+                            <a href="home_page">Home Cocaine Page</a>
+                        </div>
+                        <div class="navbar-item">
+                            <a href="submit_trip_report_page">New Trip Report</a>
+                        </div>
+                        <div class="navbar-item">
+                            <a href="journey_safe_page">Journey Safe</a>
+                        </div>
+                        <div class="navbar-item">
+                            <a href="map_page">Map</a>
+                        </div>
+                        <!--<div class="navbar-item">
+                            <a href="[[=URL('books_movies')]]">Books & Movies</a>
+                        </div>-->
+                        <div class="navbar-item">
+                            <a href="create_profile_page">My Profile</a>
+                        </div>
+                        <div class="navbar-item">
+                            <li class="dropdown-btn">For TripSitters
+                                <i class="fa fa-caret-down"></i>
+                                <div class="dropdown-content">
+                                    <a>Tripsit for Others</a>
+                                    <a>Become a Tripsitter</a>
+                                </div>
+                            </li>
+                        </div>
+
+                        <div class="navbar-item">
+                            <li class="dropdown-btn">For Journeyers
+                                <i class="fa fa-caret-down"></i>
+                                <div class="dropdown-content">
+                                    <a href ="local_tripsitters" >Find a Tripsitter</a>
+                                    <a>Journey Alone</a>
+                                </div>
+                            </li>
+                        </div>
+                        <div class="navbar-item">
+                            <a href="need_help">Find Help</a>
+                        </div>
+                        <div class="navbar-item">
+                            <a href="auth/logout">Sign out</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="level-item">
+                    <div class="navbar-header">
+                        LSDWORLD: The Lifestyle App for Psychonauts
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- beginning of HTML inserted by extending template -->
+    <!--[[include]]-->
+</div>
 <div id="vue-target" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
     <section class="section">
         <nav class="navbar is-danger">
@@ -204,6 +272,7 @@
     let fetch_profile_fields = "[[=XML(fetch_profile_fields)]]"
     let fetch_tags = "[[=XML(fetch_tags)]]";
 </script>
+<script src="../static/js/utils.js"></script>
   <script src=
 "https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js">
     </script>
