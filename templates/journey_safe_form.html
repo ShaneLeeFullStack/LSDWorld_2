@@ -1,13 +1,5 @@
-<!--[[extend 'layout_auth.html']]-->
-<head>
-     <meta name="viewport" http-equiv="Cache-control" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="data:image/x-icon;
-    base64,AAABAAEAAQEAAAEAIAAwAAAAFgAAACgAAAABAAAAAgAAAAEAIAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAAAAAA=="/>
-
-    <link rel="stylesheet" href="../static/css/bulma.css">
-    <link rel="stylesheet" href="../static/css/elements.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.0/css/all.css">
-</head>
+{% extends "layout_auth.html" %}
+{% block content %}
 <div id="vue-target" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
     <section class="section">
         <nav class="navbar is-danger">
@@ -176,7 +168,7 @@
         </form>
     </section>
 </div>
-
+{% endblock %}
 
 <script>
     let fetch_trip_reports = "[[=XML(fetch_trip_reports)]]";
@@ -184,10 +176,7 @@
     let fetch_tags = "[[=XML(fetch_tags)]]";
     let journey_safe = "[[=XML(journey_safe)]]";
 </script>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-<script src="../static/js/home_page.js"></script>
-<script  src="../static/js/vue.js"  ></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
 
 
 

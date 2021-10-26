@@ -1,13 +1,6 @@
-<!--[[extend 'layout_auth.html']]-->
-<head>
-     <meta name="viewport" http-equiv="Cache-control" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="data:image/x-icon;
-    base64,AAABAAEAAQEAAAEAIAAwAAAAFgAAACgAAAABAAAAAgAAAAEAIAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAAAAAA=="/>
+{% extends "layout_auth.html" %}
 
-    <link rel="stylesheet" href="../static/css/bulma.css">
-    <link rel="stylesheet" href="../static/css/elements.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.0/css/all.css">
-</head>
+{% block content %}
 <div id="vue-target" xmlns:v-on="http://www.w3.org/1999/xhtml"
      xmlns:v-bind="http://www.w3.org/1999/xhtml">
 
@@ -31,16 +24,7 @@
                 <button @click="toggle_exploring_safely" class="delete is-large small_circle"></button>
         </section>
 </div>
+{% endblock %}
 
 
-<script src=
-"https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js">
-    </script>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-<script src="../static/js/home_page.js"></script>
-<script  src="../static/js/vue.js"  ></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-
-<script src="../static/js/home_page.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
