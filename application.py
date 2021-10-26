@@ -130,7 +130,8 @@ def fetch_tags():
     substance_id_result = engine_azure.connect().execute(sub_id_query)
     new_substance_id = substance_id_result.first()[0]
     fetched_tags = new_substance_id
-    return dict(fetched_tags=fetched_tags)
+    return render_template('create_profile_form.html',
+                           fetched_tags=fetched_tags)
 
 
 @app.route('/fetch_trip_reports', methods=['GET', 'POST'])
@@ -141,7 +142,8 @@ def fetch_trip_reports():
     substance_id_result = engine_azure.connect().execute(sub_id_query)
     new_substance_id = substance_id_result.first()[0]
     fetched_trip_reports = new_substance_id
-    return dict(fetched_trip_reports=fetched_trip_reports)
+    return render_template('submit_trip_report_form.html',
+                           fetched_trip_reports=fetched_trip_reports)
 
 
 @app.route('/fetch_profile_fields', methods=['GET', 'POST'])
