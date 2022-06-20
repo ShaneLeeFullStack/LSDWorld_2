@@ -5,7 +5,9 @@ from py4web import URL
 from sqlalchemy.orm import Session
 import datetime
 from flask import Flask, jsonify, url_for, request, render_template, redirect
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
+
 import pyodbc
 import urllib.parse
 from sqlalchemy.ext.declarative import declarative_base
@@ -135,6 +137,7 @@ def fetch_tags():
 
 
 @app.route('/fetch_trip_reports', methods=['GET', 'POST'])
+@app.use
 def fetch_trip_reports():
     sub_id_query = select(SUBSTANCES).where(
         SUBSTANCES.columns.substance_name ==
