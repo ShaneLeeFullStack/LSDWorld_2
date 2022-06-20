@@ -11,7 +11,8 @@ from flask_sqlalchemy import SQLAlchemy
 import pyodbc
 import urllib.parse
 from sqlalchemy.ext.declarative import declarative_base
-
+# configuration
+DEBUG = True
 Base = declarative_base()
 
 
@@ -33,6 +34,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc:///?odbc_connect=%s" % params
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 # extensions
+CORS(app, resources={r'/*': {'origins': '*'}})
 conn_str = 'mssql+pyodbc:///?odbc_connect={}'.format(params)
 engine_azure = create_engine(conn_str, echo=False)
 db = SQLAlchemy(app)
@@ -142,9 +144,9 @@ def fetch_trip_reports():
     sub_id_query = select(SUBSTANCES).where(
         SUBSTANCES.columns.substance_name ==
         'marijuana')
-    substance_id_result = engine_azure.connect().execute(sub_id_query)
-    new_substance_id = substance_id_result.first()[0]
-    fetched_trip_reports = new_substance_id
+    fetched_trip_reports = engine_azure.connect().execute(sub_id_query)
+    # new_substance_id = substance_id_results.first()[0]
+    # fetched_trip_reports = new_substance_id
     return render_template('submit_trip_report_form.html',
                            fetched_trip_reports=fetched_trip_reports)
 
