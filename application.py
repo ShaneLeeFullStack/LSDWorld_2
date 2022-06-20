@@ -137,7 +137,7 @@ def fetch_tags():
 
 
 @app.route('/fetch_trip_reports', methods=['GET', 'POST'])
-@app.use
+# @app.use
 def fetch_trip_reports():
     sub_id_query = select(SUBSTANCES).where(
         SUBSTANCES.columns.substance_name ==
