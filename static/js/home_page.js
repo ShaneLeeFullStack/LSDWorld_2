@@ -59,9 +59,10 @@ let init = (app) => {
       app.vue.gender_list = gender_list;
   }
 
-  app.fetch_my_trip_reports = () => {
+  app.fetch_trip_reports = () => {
       axios
-          .get('http://192.168.1.73/fetch_trip_reports')
+          // .get('http://192.168.1.73/fetch_trip_reports')
+          .get (fetch_trip_reports)
           .then((result) => {
               app.vue.trip_reports = result.data.trip_reports
           })
@@ -255,7 +256,7 @@ let init = (app) => {
        toggle_trip_reports_showing: app.toggle_trip_reports_showing,
        toggle_this_report_showing: app.toggle_this_report_showing,
        submit_trip_report: app.submit_trip_report,
-       fetch_my_trip_reports: app.fetch_my_trip_reports,
+       fetch_trip_reports: app.fetch_trip_reports,
        delete_report: app.delete_report,
        toggle_edit_report: app.toggle_edit_report,
        save_edited_report: app.save_edited_report,

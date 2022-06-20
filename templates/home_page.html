@@ -20,7 +20,7 @@
                     <div id="mySidenav" class="sidenav">
                         <a onclick="closeNav()" href="javascript:void(0)" class="closebtn">&times;</a>
                         <div class="navbar-item">
-                            <a href="home_page">Home Cocaine Page</a>
+                            <a href="home_page">Home Page</a>
                         </div>
                         <div class="navbar-item">
                             <a href="submit_trip_report_page">New Trip Report</a>
@@ -88,7 +88,7 @@
         </div>
 
     <div v-if="trip_reports_showing && !exploring_safely">
-        {% for report in fetched_trip_reports %}
+        {% for report in trip_reports %}
 {#        <div v-for="report in trip_reports">#}
           <div class="tile is-ancestor">
             <div class="tile is-parent is-vertical">
@@ -96,7 +96,7 @@
                     <!--Title Display Button-->
                     <button class="button is-danger">{{ report.title }}</button>
                     <!--Substance Name Display Button-->
-                    <button class="button is-danger">{{ report.substance_name }}</button>
+                    <button class="button is-danger">{{ report.substance_id }}</button>
                     <!--VIEW REPORT BUTTON-->
                     <button @click="toggle_this_report_showing(report.id)"
                             class="button is-danger">View Report</button>
@@ -154,8 +154,8 @@
             </div>
         </div>
         {% endfor %}
-{#        </div>#}
-    </div>
+        </div>
+{#    </div>#}
 </section>
 </div>
 
