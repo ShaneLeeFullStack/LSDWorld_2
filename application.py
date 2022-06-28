@@ -5,7 +5,7 @@ from py4web import URL
 from sqlalchemy.orm import Session
 import datetime
 from flask import Flask, jsonify, url_for, request, render_template, redirect
-from flask_cors import CORS
+# from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 
 import pyodbc
@@ -34,7 +34,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc:///?odbc_connect=%s" % params
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 # extensions
-CORS(app, resources={r'/*': {'origins': '*'}})
+# CORS(app, resources={r'/*': {'origins': '*'}})
 conn_str = 'mssql+pyodbc:///?odbc_connect={}'.format(params)
 engine_azure = create_engine(conn_str, echo=False)
 db = SQLAlchemy(app)
