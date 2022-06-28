@@ -106,9 +106,16 @@ def submit_trip_report():
     return redirect('submit_trip_report_page')
 
 
+# fetched_trip_reports = ["Pikachu", "Charizard", "Squirtle", "Jigglypuff",
+#             "Bulbasaur", "Gengar", "Charmander", "Mew", "Lugia", "Gyarados"]
+
+
+# defining home page
 @app.route('/home_page', methods=['GET', 'POST'])
 def home_page():
-    return render_template('home_page.html')
+    sub_id_query = "SELECT * FROM TRIP_REPORTS";
+    fetched_trip_reports = engine_azure.connect().execute(sub_id_query)
+    return render_template('home_page.html', fetched_trip_reports=fetched_trip_reports)
 
 
 @app.route('/journey_safe_page', methods=['GET', 'POST'])
@@ -141,9 +148,13 @@ def fetch_tags():
 @app.route('/fetch_trip_reports', methods=['GET', 'POST'])
 # @app.use
 def fetch_trip_reports():
-    sub_id_query = select(SUBSTANCES).where(
-        SUBSTANCES.columns.substance_name ==
-        'marijuana')
+    # engine_azure.execute()
+    # sub_id_query =  select(TRIP_REPORTS.columns.)
+    # select(TRIP_REPORTS).where(
+    #     TRIP_REPORTS.
+    #     .columns.substance_name ==
+    #     'marijuana')
+    sub_id_query = "SELECT * FROM TRIP_REPORTS";
     fetched_trip_reports = engine_azure.connect().execute(sub_id_query)
     # new_substance_id = substance_id_results.first()[0]
     # fetched_trip_reports = new_substance_id
