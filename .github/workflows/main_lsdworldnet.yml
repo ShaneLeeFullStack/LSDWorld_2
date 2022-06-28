@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'lsdworldnet'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2789FDB9A4094C41ACFFC4189712E23F }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_27DBB83930C34FC3B76BE76DA8BAA2FC }}
