@@ -111,7 +111,6 @@ def submit_trip_report():
 
 
 # defining home page
-
 @app.route('/home_page', methods=['GET', 'POST'])
 def home_page():
     sub_id_query = "SELECT * FROM TRIP_REPORTS";
