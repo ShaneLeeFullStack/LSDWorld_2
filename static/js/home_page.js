@@ -139,7 +139,7 @@ let init = (app) => {
           .then((result) => {
               new_trip_report = {
                   report_id: result.data.id,
-                  is_showing: null,
+                  is_showing: result.data.is_showing,
                   report_content: result.data.report_content,
               }
               app.vue.trip_reports.unshift(new_trip_report)
