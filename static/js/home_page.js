@@ -285,7 +285,7 @@ let init = (app) => {
         app.fetch_substances()
         app.fetch_profile_fields(),
         app.fetch_genders(),
-       app.fetch_my_trip_reports(),
+        app.fetch_my_trip_reports(),
         app.fetch_tags()
     };
 
