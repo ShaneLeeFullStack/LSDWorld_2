@@ -114,11 +114,11 @@ let init = (app) => {
           app.vue.this_report_showing.splice(desiredindex, 1)
       }
   }
-  const path_fetch_profile_fields = ''
-  app.lsd_fetch_profile_fields = () => {
+//   const path_fetch_profile_fields = ''
+//   app.lsd_fetch_profile_fields = () => {
 
 
-  }
+//   }
 
   app.submit_trip_report = () => {
       let new_trip_report = {
@@ -139,7 +139,7 @@ let init = (app) => {
           .then((result) => {
               new_trip_report = {
                   report_id: result.data.id,
-                  is_showing: result.data.is_showing,
+                  is_showing: null,
                   report_content: result.data.report_content,
               }
               app.vue.trip_reports.unshift(new_trip_report)
@@ -285,7 +285,7 @@ let init = (app) => {
         app.fetch_substances()
         app.fetch_profile_fields(),
         app.fetch_genders(),
-        app.fetch_my_trip_reports(),
+       app.fetch_my_trip_reports(),
         app.fetch_tags()
     };
 
