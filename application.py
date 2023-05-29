@@ -98,6 +98,7 @@ def submit_trip_report():
         substance_id=new_substance_id,
         title=request.form['title'],
         report_content=request.form['report_content'],
+        is_showing = true,
     )
     with engine_azure.connect() as conn:
         conn.execute(insert_trip_reports_4)
