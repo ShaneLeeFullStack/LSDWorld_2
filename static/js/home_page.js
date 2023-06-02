@@ -15,7 +15,6 @@ const gender_list = [ "Female","Male","Agender","Androgyne","Androgynous","Bigen
 const dosage_units_list= ["mcg (micrograms)", "mg (milligrams)", "g (grams)", "mL (milliliters)" ]
 const substance_list= ["Magic Mushrooms", "Kava", "Salvia", "Ayahuasca", "Mescaline", "Sananga",
         "DMT", "Marijuana", "LSD", "Ketamine", "Cocaine"]
-console.log(substance_list)
 // Given an empty app object, initializes it filling its attributes,
 // creates a Vue instance, and then initializes the Vue instance.
 let init = (app) => {
