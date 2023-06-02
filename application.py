@@ -141,7 +141,8 @@ def fetch_tags():
         'marijuana')
     substance_id_result = engine_azure.connect().execute(sub_id_query)
     new_substance_id = substance_id_result.first()[0]
-    tags = new_substance_id
+    tags = 700
+    #new_substance_id
     return render_template('create_profile_form.html',
                            tags=tags)
 
