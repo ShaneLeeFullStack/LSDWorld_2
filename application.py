@@ -170,7 +170,8 @@ def fetch_profile_fields():
         'marijuana')
     substance_id_result = engine_azure.connect().execute(sub_id_query)
     new_substance_id = substance_id_result.first()[0]
-    profile_fields = new_substance_id
+    profile_fields = 55
+    #new_substance_id
     return dict(profile_fields=profile_fields)
 
 
