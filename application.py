@@ -7,7 +7,6 @@ import datetime
 from flask import Flask, jsonify, url_for, request, render_template, redirect
 # from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
-
 import pyodbc
 import urllib.parse
 from sqlalchemy.ext.declarative import declarative_base
