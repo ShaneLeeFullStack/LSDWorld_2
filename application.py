@@ -21,7 +21,7 @@ def get_time():
 
 
 # Configure Database URI:
-params = urllib.parse.quote_plus("Driver={ODBC Driver 17 for SQL Server};"
+params = urllib.parse.quote_plus("Driver={ODBC Driver 18 for SQL Server};"
                                  "Server=tcp:lsdworld-server.database.windows.net,1433;"
                                  "Database=lsdworld_database;Uid=azureuser;"
                                  "Pwd={gHostbat9&};"
