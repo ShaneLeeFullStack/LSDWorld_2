@@ -63,7 +63,7 @@ let init = (app) => {
       axios
         //   .get('https://192.168.1.73/fetch_trip_reports')
 		  //.get('https://lsdworldnet.azurewebsites.net/fetch_trip_reports')
-          .get ('/fetch_trip_reports')
+          .get (fetch_trip_reports)
           .then((result) => {
               app.vue.trip_reports = result.data.trip_reports;
 			  console.log(app.vue.trip_reports);
@@ -169,7 +169,8 @@ let init = (app) => {
       // below we get object returned by def fetch_profile_fields()
       // in applications.py
         axios
-          .get('https://192.168.1.73/fetch_profile_fields')
+          //.get('https://192.168.1.73/fetch_profile_fields')
+		  .get("/fetch_profile_fields")
           .then((result) => {
               app.vue.profile_fields = result.data.profile_fields
           })
@@ -204,7 +205,8 @@ let init = (app) => {
   //The only purpose of this method is to make a javascript array version of the list of tags
   app.fetch_tags = () => {
       axios
-          .get('https://192.168.1.73/fetch_tags')
+          //.get('https://192.168.1.73/fetch_tags')
+		  .get(fetch_tags)
           .then((result) => {
               app.vue.tags = result.data.user_report_tags
           })
