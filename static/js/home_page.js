@@ -206,7 +206,7 @@ let init = (app) => {
   app.fetch_tags = () => {
       axios
           //.get('https://192.168.1.73/fetch_tags')
-		  .get(fetch_tags)
+		  .get("/fetch_tags")
           .then((result) => {
               app.vue.tags = result.data.user_report_tags
           })
