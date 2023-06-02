@@ -155,12 +155,12 @@ def fetch_trip_reports():
     #     TRIP_REPORTS.
     #     .columns.substance_name ==
     #     'marijuana')
-    sub_id_query = "SELECT * FROM TRIP_REPORTS";
-    fetched_trip_reports = engine_azure.connect().execute(sub_id_query)
+    sub_id_query = "SELECT * FROM TRIP_REPORTS"
+    trip_reports = engine_azure.connect().execute(sub_id_query)
     # new_substance_id = substance_id_results.first()[0]
     # fetched_trip_reports = new_substance_id
     return render_template('submit_trip_report_form.html',
-                           fetched_trip_reports=fetched_trip_reports)
+                           trip_reports=trip_reports)
 
 
 @app.route('/fetch_profile_fields', methods=['GET', 'POST'])
