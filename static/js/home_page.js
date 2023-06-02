@@ -63,7 +63,7 @@ let init = (app) => {
       axios
         //   .get('https://192.168.1.73/fetch_trip_reports')
 		  //.get('https://lsdworldnet.azurewebsites.net/fetch_trip_reports')
-          .get (fetch_trip_reports)
+          .get ("/fetch_trip_reports")
           .then((result) => {
               app.vue.trip_reports = result.data.trip_reports;
 			  console.log(app.vue.trip_reports);
