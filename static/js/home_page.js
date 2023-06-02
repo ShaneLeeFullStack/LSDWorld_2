@@ -36,6 +36,7 @@ let init = (app) => {
     show_tripsitters: false,
     danger_combo: false,
   }
+  console.log("FREEDOM");
 
   app.toggle_add_substance = () => {
         app.vue.add_substance = !app.vue.add_substance;
@@ -68,7 +69,6 @@ let init = (app) => {
 			//   console.log('FREEDOM');
           })
   }
-  console.log('FREEDOM');
 
   app.toggle_profile_updated = () => {
         app.vue.profile_updated =! app.vue.profile_updated;
