@@ -192,7 +192,7 @@ def create_profile():
 def need_help():
     return render_template('need_help.html')
 
-
+# random addition
 # @app.route('/auth/logout')
 # def auth_logout():
 #    return render_template('auth.html')
