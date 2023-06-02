@@ -5,7 +5,7 @@ from py4web import URL
 from sqlalchemy.orm import Session
 import datetime
 from flask import Flask, jsonify, url_for, request, render_template, redirect
-# from flask_cors import CORS
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 import pyodbc
 import urllib.parse
