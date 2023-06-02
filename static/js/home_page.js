@@ -61,8 +61,8 @@ let init = (app) => {
 
   app.fetch_trip_reports = () => {
       axios
-          // .get('http://192.168.1.73/fetch_trip_reports')
-          .get (fetch_trip_reports)
+          .get('http://192.168.1.73/fetch_trip_reports')
+          //.get (fetch_trip_reports)
           .then((result) => {
               app.vue.trip_reports = result.data.trip_reports
           })
