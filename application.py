@@ -30,7 +30,7 @@ def get_time():
 params = urllib.parse.quote_plus("Driver={ODBC Driver 18 for SQL Server};"
                                  "Server=tcp:lsdworld-server.database.windows.net,1433;"
                                  "Database=lsdworld_database_2023-06-02T15-39Z;"
-                                 "Uid=azureuser;Pwd={your_password_here};"
+                                 "Uid=azureuser;Pwd={gHostbat9&};"
                                  "Encrypt=yes;"
                                  "TrustServerCertificate=no;"
                                  "Connection Timeout=30;"
