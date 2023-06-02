@@ -34,6 +34,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc:///?odbc_connect=%s" % params
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 # extensions
+CORS(app)
 # CORS(app, resources={r'/*': {'origins': '*'}})
 conn_str = 'mssql+pyodbc:///?odbc_connect={}'.format(params)
 engine_azure = create_engine(conn_str, echo=False)
