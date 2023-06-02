@@ -126,7 +126,7 @@ def journey_safe():
 
 @app.route('/map_page', methods=['GET', 'POST'])
 def map_page():
-    return render_template('map_form.html')
+    return render_template('map.html')
 
 @app.route('/map_cont', methods=['GET', 'POST'])
 def map_cont():
