@@ -141,9 +141,9 @@ def fetch_tags():
         'marijuana')
     substance_id_result = engine_azure.connect().execute(sub_id_query)
     new_substance_id = substance_id_result.first()[0]
-    fetched_tags = new_substance_id
+    tags = new_substance_id
     return render_template('create_profile_form.html',
-                           fetched_tags=fetched_tags)
+                           tags=tags)
 
 
 @app.route('/fetch_trip_reports', methods=['GET', 'POST'])

@@ -208,7 +208,7 @@ let init = (app) => {
           //.get('https://192.168.1.73/fetch_tags')
 		  .get("/fetch_tags")
           .then((result) => {
-              app.vue.tags = result.data.user_report_tags
+              app.vue.tags = result.data.tags
           })
   }
 
