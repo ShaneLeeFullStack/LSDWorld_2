@@ -65,9 +65,10 @@ let init = (app) => {
           .then((result) => {
               app.vue.trip_reports = result.data.trip_reports;
 			  console.log(app.vue.trip_reports);
-			  console.log('FREEDOM');
+			//   console.log('FREEDOM');
           })
   }
+  console.log('FREEDOM');
 
   app.toggle_profile_updated = () => {
         app.vue.profile_updated =! app.vue.profile_updated;
