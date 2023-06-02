@@ -65,6 +65,7 @@ let init = (app) => {
           .then((result) => {
               app.vue.trip_reports = result.data.trip_reports;
 			  console.log(app.vue.trip_reports);
+			  console.log('FREEDOM');
           })
   }
 
