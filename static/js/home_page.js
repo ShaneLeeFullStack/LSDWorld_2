@@ -32,7 +32,7 @@ let init = (app) => {
     edit_this_profile_field: false,
     profile_fields: [],
     profile_updated: false,
-    tags: [],
+    // tags: [],
     show_tripsitters: false,
     danger_combo: false,
   }
@@ -157,7 +157,7 @@ let init = (app) => {
       })
           .then((result) => {
           })
-      app.fetch_tags()
+    //   app.fetch_tags()
   }
 
   app.fetch_profile_fields = () => {
@@ -198,14 +198,14 @@ let init = (app) => {
   }
 
   //The only purpose of this method is to make a javascript array version of the list of tags
-  app.fetch_tags = () => {
-      axios
-          //.get('https://192.168.1.73/fetch_tags')
-		  .get("/fetch_tags")
-          .then((result) => {
-              app.vue.tags = result.data.tags
-          })
-  }
+//   app.fetch_tags = () => {
+//       axios
+//           //.get('https://192.168.1.73/fetch_tags')
+// 		  .get("/fetch_tags")
+//           .then((result) => {
+//               app.vue.tags = result.data.tags
+//           })
+//   }
 
   app.delete_report = (report_id) => {
       let report_index_intra =app.vue.trip_reports.findIndex(r => r.id === report_id)
@@ -266,7 +266,7 @@ let init = (app) => {
        fetch_profile_fields: app.fetch_profile_fields,
        fetch_genders: app.fetch_genders,
        fetch_substances: app.fetch_substances,
-       fetch_tags: app.fetch_tags,
+    //    fetch_tags: app.fetch_tags,
        fetch_doses: app.fetch_doses,
        toggle_show_tripsitters: app.toggle_show_tripsitters,
        dangerous_combo: app.dangerous_combo,
@@ -285,8 +285,8 @@ let init = (app) => {
         app.fetch_substances()
         app.fetch_profile_fields(),
         app.fetch_genders(),
-        app.fetch_trip_reports(),
-        app.fetch_tags()
+        app.fetch_trip_reports()
+        // app.fetch_tags()
     };
 
     // Call to the initializer.
