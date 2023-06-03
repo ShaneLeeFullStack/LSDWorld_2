@@ -158,9 +158,9 @@
         {% endfor %}
         <!-- </div> -->
 
- {#    <div v-if="trip_reports_showing && !exploring_safely">#} 
-        {% for report in fetched_trip_reports %}
- {#        <div v-for="report in trip_reports">#}
+     <div v-if="trip_reports_showing && !exploring_safely"> 
+        <!-- {% for report in fetched_trip_reports %} -->
+        <div v-for="report in trip_reports">
           <div class="tile is-ancestor">
             <div class="tile is-parent is-vertical">
                 <div class="tile is-child">
@@ -182,7 +182,7 @@
                 <!-- <!-Report Content Display Box -- -->
                 <div v-if="this_report_showing.includes(report.id)">
                     <div class="box">
-                        <div>{{ report }}</div>
+                        <!-- <div>{{ report }}</div> -->
                         <!-- <!- report.report_content -- -->
                     </div>
                      <!-- <!-Content Tags -- -->
@@ -209,7 +209,7 @@
 
                     <!-- <!-SAVE EDIT BUTTON -- -->
                     <div v-if="edit_this_report === report.id">
-                        <!-This line of code saves edit and hides the edit box --
+                        <!-- <!-This line of code saves edit and hides the edit box -- -->
                         <button @click="save_edited_report(report.id)"
                                 class="button is-link">
                             <a href="[[=URL('index')]]"></a>
@@ -225,10 +225,10 @@
                 </div>
             </div>
         </div>
-        {% endfor %}
-{#        </div>#} 
+        <!-- {% endfor %} -->
+        </div> 
 
-{#    </div>#}
+    </div>
 </section>
 </div>
 
