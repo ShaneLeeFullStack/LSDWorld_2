@@ -80,10 +80,10 @@
 </div>
 <div id="vue-target" xmlns:v-on="http://www.w3.org/1999/xhtml"> </div>
 <section class="section"> 
-    <div v-if="!exploring_safely">
+    <!-- <div v-if="!exploring_safely"> -->
         <h1 class="title">Your Trip Reports</h1>
-    </div>
-        <div v-if="!exploring_safely">
+    <!-- </div> -->
+        <!-- <div v-if="!exploring_safely"> -->
             <button v-on:click="toggle_trip_reports_showing" class="button2 is-danger">
                 <span> <i class="fa fa-plus fa-fw"></i></span> <span>View Trip Reports</span>
             </button> 
@@ -158,7 +158,7 @@
         {% endfor %}
         <!-- </div> -->
 
-     <div v-if="trip_reports_showing && !exploring_safely"> 
+     <!-- <div v-if="trip_reports_showing && !exploring_safely">  -->
         <!-- {% for report in fetched_trip_reports %} -->
         <div v-for="report in trip_reports">
           <div class="tile is-ancestor">
@@ -182,9 +182,9 @@
                 <!-- <!-Report Content Display Box -- -->
                 <div v-if="this_report_showing.includes(report.id)">
                     <div class="box">
-                        <!-- <div>{{ report }}</div> -->
-                        <!-- <!- report.report_content -- -->
-                    </div>
+                        <div>{{ report.report_content }}</div>
+                        <!-- <!- report.report_content -->
+					</div>
                      <!-- <!-Content Tags -- -->
                      <!-- <nav class="level is-mobile"> 
                       <div v-for="entry in tags" v-if="entry.id === report.id">
@@ -202,33 +202,33 @@
                 </div>
 
                 <!-- <!-Edit Report Box -- -->
-                <div v-if="edit_this_report === report.id">
-                    <div class="box">
+                <!-- <div v-if="edit_this_report === report.id"> -->
+                    <!-- <div class="box">
                         <textarea v-model="report.report_content" class="textarea is-danger"></textarea>
-                    </div>
+                    </div> -->
 
                     <!-- <!-SAVE EDIT BUTTON -- -->
-                    <div v-if="edit_this_report === report.id">
-                        <!-- <!-This line of code saves edit and hides the edit box -- -->
+                    <!-- <div v-if="edit_this_report === report.id">
+                         <!-This line of code saves edit and hides the edit box 
                         <button @click="save_edited_report(report.id)"
                                 class="button is-link">
                             <a href="[[=URL('index')]]"></a>
                             Save
                         <i class="fas fa-check-square"></i></button>
-                    </div>
+                    </div> -->
 
                     <!-- <!-CANCEL EDIT BUTTON -- -->
-                    <div v-if="edit_this_report === report.id">
+                    <!-- <div v-if="edit_this_report === report.id">
                         <button class="button is-danger-red">Cancel
                         <i class="fas fa-times"></i></button>
-                    </div>
-                </div>
+                    </div> -->
+                <!-- </div> -->
             </div>
         </div>
         <!-- {% endfor %} -->
         </div> 
 
-    </div>
+    <!-- </div> -->
 </section>
 </div>
 

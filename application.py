@@ -131,21 +131,21 @@ def map_page():
 
 @app.route('/map_cont', methods=['GET', 'POST'])
 def map_cont():
-    return render_template('map.html')
+    return render_template('map_form.html')
     #return dict(map_cont=URL('map_cont', signer=url_signer))
 
-@app.route('/fetch_tags', methods=['GET', 'POST'])
-#@app.url_map('create_profile_page.html')
-def fetch_tags():
-    sub_id_query = select(SUBSTANCES).where(
-        SUBSTANCES.columns.substance_name ==
-        'marijuana')
-    substance_id_result = engine_azure.connect().execute(sub_id_query)
-    new_substance_id = substance_id_result.first()[0]
-    tags = ["ego death"],
-    #new_substance_id
-    return render_template('create_profile_form.html',
-                           tags=tags)
+# @app.route('/fetch_tags', methods=['GET', 'POST'])
+# #@app.url_map('create_profile_page.html')
+# def fetch_tags():
+#     sub_id_query = select(SUBSTANCES).where(
+#         SUBSTANCES.columns.substance_name ==
+#         'marijuana')
+#     substance_id_result = engine_azure.connect().execute(sub_id_query)
+#     new_substance_id = substance_id_result.first()[0]
+#     tags = ["ego death"],
+#     #new_substance_id
+#     return render_template('create_profile_form.html',
+#                            tags=tags)
 
 
 @app.route('/fetch_trip_reports', methods=['GET', 'POST'])
