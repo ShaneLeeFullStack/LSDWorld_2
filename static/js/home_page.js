@@ -66,7 +66,7 @@ let init = (app) => {
           .get ("/fetch_trip_reports")
           .then((result) => {
               app.vue.trip_reports = result.data.trip_reports;
-			  console.log(app.vue.trip_reports);
+			  console.log(app.vue.trip_reports.trip_reports_title);
 			//   console.log('FREEDOM');
           })
   }
