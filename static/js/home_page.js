@@ -20,7 +20,7 @@ const substance_list= ["Magic Mushrooms", "Kava", "Salvia", "Ayahuasca", "Mescal
 let init = (app) => {
     app.data = {
     add_substance: false,
-    trip_reports: [],
+    trip_reports: null,
     gender_list: [],
     dosage_units_list: [],
     trip_reports_showing: false,

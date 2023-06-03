@@ -83,7 +83,7 @@
     <div v-if="!exploring_safely">
         <h1 class="title">Your Trip Reports</h1>
     </div>
-        <!-- <div v-if="!exploring_safely"> -->
+        <div v-if="!exploring_safely">
             <button v-on:click="toggle_trip_reports_showing" class="button2 is-danger">
                 <span> <i class="fa fa-plus fa-fw"></i></span> <span>View Trip Reports</span>
             </button> 
@@ -165,9 +165,9 @@
             <div class="tile is-parent is-vertical">
                 <div class="tile is-child">
                     <!-- Title Display Button -->
-                    <button class="button is-danger">{{ fetched_trip_reports[0] }}</button>
+                    <button class="button is-danger">{{ report.title }}</button>
                     <!-- <!-Substance Name Display Button-- -->
-                    <button class="button is-danger">{{ report.substance_id }}</button>
+                    <button class="button is-danger">{{ report.substance_name }}</button>
                     <!-- <!-VIEW REPORT BUTTON-- -->
                     <button @click="toggle_this_report_showing(report.id)"
                             class="button is-danger">View Report</button>

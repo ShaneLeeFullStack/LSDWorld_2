@@ -162,7 +162,7 @@ def fetch_trip_reports():
     # new_substance_id = substance_id_results.first()[0]
     # fetched_trip_reports = new_substance_id
     return render_template('submit_trip_report_form.html',
-                           trip_reports=trip_reports,
+                           trip_reports=trip_reports.report_ids,
                            trip_reports_title = trip_reports.title)
 
 
