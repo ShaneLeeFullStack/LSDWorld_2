@@ -114,9 +114,10 @@ def submit_trip_report():
 # defining home page
 @app.route('/home_page', methods=['GET', 'POST'])
 def home_page():
-    sub_id_query = "SELECT * FROM TRIP_REPORTS";
-    fetched_trip_reports = engine_azure.connect().execute(sub_id_query)
-    return render_template('home_page.html', fetched_trip_reports=fetched_trip_reports)
+    # sub_id_query = "SELECT * FROM TRIP_REPORTS"
+    # fetched_trip_reports = engine_azure.connect().execute(sub_id_query)
+    return render_template('home_page.html')
+    # , fetched_trip_reports=fetched_trip_reports)
 
 
 @app.route('/journey_safe_page', methods=['GET', 'POST'])
