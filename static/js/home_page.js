@@ -220,13 +220,11 @@ let init = (app) => {
        delete_report: app.delete_report,
        toggle_edit_report: app.toggle_edit_report,
        save_edited_report: app.save_edited_report,
-       toggle_exploring_safely: app.toggle_exploring_safely,
        toggle_need_help: app.toggle_need_help,
        toggle_profile_updated: app.toggle_profile_updated,
        fetch_profile_fields: app.fetch_profile_fields,
        fetch_genders: app.fetch_genders,
        fetch_substances: app.fetch_substances,
-    //    fetch_tags: app.fetch_tags,
        fetch_doses: app.fetch_doses,
    }
 
@@ -244,14 +242,11 @@ let init = (app) => {
         app.fetch_profile_fields(),
         app.fetch_genders(),
         app.fetch_trip_reports()
-        // app.fetch_tags()
     };
 
     // Call to the initializer.
     app.init();
 };
-
-
 
 init(app);
 
