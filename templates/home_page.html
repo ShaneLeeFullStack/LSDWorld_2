@@ -1,4 +1,7 @@
 <!--[[extend 'layout_auth.html']]-->
+{% extends "layout_auth.html" %}
+{% block content %}
+
 <head>
      <meta name="viewport" http-equiv="Cache-control" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="data:image/x-icon;
@@ -232,16 +235,16 @@
 
 
 <script>
-    let user_email = "[[=XML(user_email)]]";
+    // let user_email = "[[=XML(user_email)]]";
     // let fetch_trip_reports = "[[=XML(fetch_trip_reports)]]";
-    let submit_trip_report_url = "[[=XML(submit_trip_report_url)]]";
-    let delete_report = "[[=XML(delete_report)]]";
+    // let submit_trip_report_url = "[[=XML(submit_trip_report_url)]]";
+    // let delete_report = "[[=XML(delete_report)]]";
     // let fetch_substance_table = "[[=XML(fetch_substance_table)]]";
-    let update_report = "[[=XML(update_report)]]";
+    // let update_report = "[[=XML(update_report)]]";
     // let fetch_profile_fields = "[[=XML(fetch_profile_fields)]]";
     // let fetch_tags = "[[=XML(fetch_tags)]]";
-    let map_page = "[[=XML(map_page)]]";
-    let create_profile_page = "[[=XML(create_profile_page)]]";
+    // let map_page = "[[=XML(map_page)]]";
+    // let create_profile_page = "[[=XML(create_profile_page)]]";
 </script>
 <script src="../static/js/utils.js"></script>
 <script src=
@@ -252,3 +255,4 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="../static/js/home_page.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+{% endblock %}
