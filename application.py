@@ -103,7 +103,6 @@ def submit_trip_report():
     with engine_azure.connect() as conn:
         conn.execute(insert_trip_reports_4)
 
-    # return dict(fetch_profile_fields=URL('fetch_profile_fields', signer=url_signer))
     return redirect('submit_trip_report_page')
 
 
@@ -114,10 +113,8 @@ def submit_trip_report():
 # defining home page
 @app.route('/home_page', methods=['GET', 'POST'])
 def home_page():
-    # sub_id_query = "SELECT * FROM TRIP_REPORTS"
     # fetched_trip_reports = engine_azure.connect().execute(sub_id_query)
     return render_template('home_page.html')
-    # , fetched_trip_reports=fetched_trip_reports)
 
 
 @app.route('/journey_safe_page', methods=['GET', 'POST'])
@@ -149,14 +146,10 @@ def map_cont():
 
 
 @app.route('/fetch_trip_reports', methods=['GET', 'POST'])
-# @app.use
 def fetch_trip_reports():
-    # engine_azure.execute()
-    # sub_id_query =  select(TRIP_REPORTS.columns.)
     # select(TRIP_REPORTS).where(
     #     TRIP_REPORTS.
-    #     .columns.substance_name ==
-    #     'marijuana')
+    #     .columns.substance_name =='marijuana')
     sub_id_query = select(TRIP_REPORTS).where(TRIP_REPORTS.columns.report_id == 9)
     trip_reports = engine_azure.connect().execute(sub_id_query)
     # new_substance_id = substance_id_results.first()[0]
