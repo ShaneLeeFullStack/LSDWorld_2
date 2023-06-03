@@ -27,15 +27,11 @@ let init = (app) => {
     this_report_showing: [],
     edit_this_report: null,
     substance_list: [],
-    exploring_safely: false,
     need_help: false,
     edit_this_profile_field: false,
     profile_fields: [],
     profile_updated: false,
-    show_tripsitters: false,
-    danger_combo: false,
   }
-  console.log("FREEDOM");
 
   app.toggle_add_substance = () => {
         app.vue.add_substance = !app.vue.add_substance;
