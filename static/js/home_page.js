@@ -117,11 +117,6 @@ let init = (app) => {
           app.vue.this_report_showing.splice(desiredindex, 1)
       }
   }
-//   const path_fetch_profile_fields = ''
-//   app.lsd_fetch_profile_fields = () => {
-
-
-//   }
 
   app.submit_trip_report = () => {
       let new_trip_report = {

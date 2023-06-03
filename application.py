@@ -142,7 +142,7 @@ def fetch_tags():
         'marijuana')
     substance_id_result = engine_azure.connect().execute(sub_id_query)
     new_substance_id = substance_id_result.first()[0]
-    tags = 700
+    tags = ["ego death"],
     #new_substance_id
     return render_template('create_profile_form.html',
                            tags=tags)
@@ -157,12 +157,13 @@ def fetch_trip_reports():
     #     TRIP_REPORTS.
     #     .columns.substance_name ==
     #     'marijuana')
-    sub_id_query = "SELECT * FROM TRIP_REPORTS"
+    sub_id_query = select(TRIP_REPORTS).where(TRIP_REPORTS.columns.report_id == 9)
     trip_reports = engine_azure.connect().execute(sub_id_query)
     # new_substance_id = substance_id_results.first()[0]
     # fetched_trip_reports = new_substance_id
     return render_template('submit_trip_report_form.html',
-                           trip_reports=trip_reports)
+                           trip_reports=trip_reports,
+                           trip_reports_title = trip_reports.title)
 
 
 @app.route('/fetch_profile_fields', methods=['GET', 'POST'])
