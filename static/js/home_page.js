@@ -32,7 +32,6 @@ let init = (app) => {
     edit_this_profile_field: false,
     profile_fields: [],
     profile_updated: false,
-    // tags: [],
     show_tripsitters: false,
     danger_combo: false,
   }
@@ -61,13 +60,10 @@ let init = (app) => {
 
   app.fetch_trip_reports = () => {
       axios
-        //   .get('https://192.168.1.73/fetch_trip_reports')
-		  //.get('https://lsdworldnet.azurewebsites.net/fetch_trip_reports')
-          .get ("/fetch_trip_reports")
+          .get("/fetch_trip_reports")
           .then((result) => {
               app.vue.trip_reports = result.data.trip_reports;
 			  console.log(app.vue.trip_reports.trip_reports_title);
-			//   console.log('FREEDOM');
           })
   }
 
@@ -157,14 +153,12 @@ let init = (app) => {
       })
           .then((result) => {
           })
-    //   app.fetch_tags()
   }
 
   app.fetch_profile_fields = () => {
       // below we get object returned by def fetch_profile_fields()
       // in applications.py
         axios
-          //.get('https://192.168.1.73/fetch_profile_fields')
 		  .get("/fetch_profile_fields")
           .then((result) => {
               app.vue.profile_fields = result.data.profile_fields
@@ -217,40 +211,6 @@ let init = (app) => {
       })
   }
 
-  app.dangerous_combo = () => {
-        console.log("freedom")
-      axios
-          .get(journey_safe)
-          .then((result) => {
-              console.log(result.data.jsub2)
-          })
-      /*if (jsub1 === "Cocaine" || jsub1 === "Ketamine"){
-          if (jsub2 === "Cocaine" || jsub2 === "Ketamine"){
-            if (jsub1 !== jsub2){
-                app.vue.danger_combo = true
-            }
-    }
-    }
-      console.log("we made it to dangerous_combo fuction ")
-}*/
-  }
-
-  /* app.dangerous_combo = () =>
-  {
-        axios
-            .get(journey_safe)
-            .then((result) =>{
-                  if (result.data.substance_row_1_id === 21 || result.data.substance_row_1_id === 22){
-                      if (result.data.substance_row_2_id ===21 || result.data.substance_row_2_id === 22){
-                        if (result.data.substance_row_1_id !== result.data.substance_row_2_id){
-                            return true
-                        }
-                }
-                }
-                  console.log("we made it to dangerous_combo fuction ")
-            })
-  }*/
-
       app.methods= {
        toggle_add_substance: app.toggle_add_substance,
        toggle_trip_reports_showing: app.toggle_trip_reports_showing,
@@ -268,8 +228,6 @@ let init = (app) => {
        fetch_substances: app.fetch_substances,
     //    fetch_tags: app.fetch_tags,
        fetch_doses: app.fetch_doses,
-       toggle_show_tripsitters: app.toggle_show_tripsitters,
-       dangerous_combo: app.dangerous_combo,
    }
 
     // This creates the Vue instance.
@@ -293,4 +251,24 @@ let init = (app) => {
     app.init();
 };
 
+
+
 init(app);
+
+
+  /* app.dangerous_combo = () =>
+  {
+        axios
+            .get(journey_safe)
+            .then((result) =>{
+                  if (result.data.substance_row_1_id === 21 || result.data.substance_row_1_id === 22){
+                      if (result.data.substance_row_2_id ===21 || result.data.substance_row_2_id === 22){
+                        if (result.data.substance_row_1_id !== result.data.substance_row_2_id){
+                            return true
+                        }
+                }
+                }
+                  console.log("we made it to dangerous_combo fuction ")
+            })
+  }*/
+
