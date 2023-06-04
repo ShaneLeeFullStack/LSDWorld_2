@@ -28,6 +28,7 @@ def get_time():
 #                                "TrustServerCertificate=no;"
 #                                "Connection Timeout=30;"
 #                                "Authentication=ActiveDirectoryPassword"
+
 params = urllib.parse.quote_plus("Driver={ODBC Driver 18 for SQL Server};"
                                  "Server=tcp:lsdworld-server.database.windows.net,1433;"
                                  "Database=lsdworld_database_2023-06-02T15-39Z;"
