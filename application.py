@@ -20,23 +20,24 @@ def get_time():
 
 # Configure Database URI:
 
+
 # "Driver={ODBC Driver 18 for SQL Server};"
-#                                  "Server=tcp:lsdworld-server.database.windows.net,1433;"
-#                                  "Database=lsdworld_database_2023-06-02T15-39Z;"
-#                                  "Uid=azureuser;"
-#                                  "Pwd={gHostbat9&};"
-#                                  "Encrypt=yes;"
-#                                  "TrustServerCertificate=no;"
-#                                  "Connection Timeout=30;"
+#                                "Server=tcp:lsdworld-def-dir-server.database.windows.net,1433;"
+#                                "Database=lsdworld_def_directory;"
+#                                "Uid={ShaneLee@seanghostbatcutleroutlook.onmicrosoft.com};"
+#                                "Pwd={Pvjich159999};"
+#                                "Encrypt=yes;"
+#                                "TrustServerCertificate=no;"
+#                                "Connection Timeout=30;"
+#                                "Authentication=ActiveDirectoryPassword"
 params = urllib.parse.quote_plus("Driver={ODBC Driver 18 for SQL Server};"
-                               "Server=tcp:lsdworld-def-dir-server.database.windows.net,1433;"
-                               "Database=lsdworld_def_directory;"
-                               "Uid={ShaneLee@seanghostbatcutleroutlook.onmicrosoft.com};"
-                               "Pwd={Pvjich159999};"
-                               "Encrypt=yes;"
-                               "TrustServerCertificate=no;"
-                               "Connection Timeout=30;"
-                               "Authentication=ActiveDirectoryPassword"
+                                 "Server=tcp:lsdworld-server.database.windows.net,1433;"
+                                 "Database=lsdworld_database_2023-06-02T15-39Z;"
+                                 "Uid=azureuser;"
+                                 "Pwd={gHostbat9&};"
+                                 "Encrypt=yes;"
+                                 "TrustServerCertificate=no;"
+                                 "Connection Timeout=30;"
                                  )
 
 # Initialization
